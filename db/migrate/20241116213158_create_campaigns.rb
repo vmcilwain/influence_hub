@@ -5,10 +5,10 @@ class CreateCampaigns < ActiveRecord::Migration[8.0]
       t.string :name, null: false, default: ''
       t.string :description
       t.integer :status, null: false, default: 0
-      t.decimal :rate, precision: 10, scale: 2
-      t.decimal :engagement_rate, precision: 10, scale: 2
-      t.decimal :reach, precision: 10, scale: 2
-      t.decimal :clicks, precision: 10, scale: 2
+      t.decimal :rate, precision: 10, scale: 2, default: 0.0
+      t.decimal :engagement_rate, precision: 10, scale: 2, default: 0.0
+      t.decimal :reach, precision: 10, scale: 2, default: 0.0
+      t.decimal :clicks, precision: 10, scale: 2, default: 0.0
 
       t.timestamps
     end
