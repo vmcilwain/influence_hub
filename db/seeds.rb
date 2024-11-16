@@ -11,7 +11,6 @@
 User.create!(
   first_name: 'Joe',
   last_name: 'Smith',
-  username: 'jsmith',
   email: 'user@example.com',
   password: 'password',
   password_confirmation: 'password',
