@@ -1,7 +1,13 @@
-require "test_helper"
+require 'test_helper'
 
 class CampaignTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  context 'associations' do
+    should belong_to(:user)
+  end
+
+  context 'validations' do
+    should validate_presence_of(:name)
+    should validate_presence_of(:rate)
+    should validate_numericality_of(:rate).is_greater_than_or_equal_to(0)
+  end
 end
