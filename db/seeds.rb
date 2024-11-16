@@ -8,11 +8,17 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-User.create!(
+user = User.create!(
   first_name: 'Joe',
   last_name: 'Smith',
   email: 'user@example.com',
   password: 'password',
   password_confirmation: 'password',
   confirmed_at: Time.zone.now
+)
+
+Campaign.create!(
+  user: user,
+  name: Faker::Business.name,
+  rate: 1.5 
 )
