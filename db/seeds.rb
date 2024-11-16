@@ -19,6 +19,6 @@ user = User.create!(
 
 Campaign.create!(
   user: user,
-  name: Faker::Business.name,
+  name: 'Instagram Campaign',
   rate: 1.5 
 )
