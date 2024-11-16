@@ -7,6 +7,7 @@ require 'active_support/core_ext/integer/time'
 
 Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'localhost', port: 3001 }
+  # config.cache_classes = true
   # Settings specified here will take precedence over those in config/application.rb.
 
   # While tests run files are not watched, reloading is not necessary.
