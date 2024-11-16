@@ -4,7 +4,7 @@
 
   <% if @campaign.errors.any? %>
     <div style="color: red">
-      <h2><%= pluralize(campaign.errors.count, "error") %> prohibited this campaign from being saved:</h2>
+      <h2><%= pluralize(@campaign.errors.count, "error") %> prohibited this campaign from being saved:</h2>
 
       <ul>
         <% @campaign.errors.each do |error| %>
