@@ -1,0 +1,23 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Prototypes</title>
+</head>
+<body>
+  <h1>Prototypes</h1>
+  
+  <% @groups.each do |group| %>
+    <h2><%= group[:name].humanize %></h2>
+    <ul>
+      <% group[:files].each do |file| %>
+        <li>
+          <a href="/prototypes/<%= group[:name] %>/<%= file.sub('.html', '') %>">
+            <%= file %>
+          </a>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+</body>
+</html>
