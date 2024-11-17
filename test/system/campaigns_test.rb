@@ -1,55 +1,105 @@
-require "application_system_test_case"
+require 'application_system_test_case'
 
-class CampaignsTest < ApplicationSystemTestCase
+class CampaignsTest < BaseSystemTestCase
   setup do
-    @campaign = campaigns(:one)
+    @user = create(:user)
   end
 
-  test "visiting the index" do
+  test 'visiting the index' do
+    sign_in @user
     visit campaigns_url
-    assert_selector "h1", text: "Campaigns"
+    assert_selector 'h1', text: 'Campaigns'
   end
 
-  test "should create campaign" do
-    visit campaigns_url
-    click_on "New campaign"
+  context 'campaign creation' do
+    should 'should create campaign' do
+      sign_in @user
 
-    fill_in "Clicks", with: @campaign.clicks
-    fill_in "Description", with: @campaign.description
-    fill_in "Engagement rate", with: @campaign.engagement_rate
-    fill_in "Name", with: @campaign.name
-    fill_in "Rate", with: @campaign.rate
-    fill_in "Reach", with: @campaign.reach
-    fill_in "Status", with: @campaign.status
-    fill_in "User", with: @campaign.user_id
-    click_on "Create Campaign"
+      visit new_campaign_url
+  
+      fill_in 'Name', with: 'New Campaign'
+      fill_in 'Rate', with: 10
+      
+      click_on 'Create Campaign'
+  
+      assert_text 'Campaign was successfully created'
+      click_on 'Back'
+    end
 
-    assert_text "Campaign was successfully created"
-    click_on "Back"
+    should 'should not create campaign if name is empty' do
+      sign_in @user
+
+      visit new_campaign_url
+  
+      fill_in 'Rate', with: 10
+      
+      click_on 'Create Campaign'
+  
+      assert_text "Name can't be blank"
+    end
+
+    should 'should not create campaign if rate is empty' do
+      sign_in @user
+
+      visit new_campaign_url
+  
+      fill_in 'Name', with: 'New Campaign'
+      
+      click_on 'Create Campaign'
+  
+      assert_text 'Rate is not a number'
+    end
   end
 
-  test "should update Campaign" do
-    visit campaign_url(@campaign)
-    click_on "Edit this campaign", match: :first
+  context 'campaign update' do
+    should 'should update Campaign' do
+      campaign = create(:campaign, user: @user)
+      sign_in @user  
+      
+      visit edit_campaign_url(campaign)
 
-    fill_in "Clicks", with: @campaign.clicks
-    fill_in "Description", with: @campaign.description
-    fill_in "Engagement rate", with: @campaign.engagement_rate
-    fill_in "Name", with: @campaign.name
-    fill_in "Rate", with: @campaign.rate
-    fill_in "Reach", with: @campaign.reach
-    fill_in "Status", with: @campaign.status
-    fill_in "User", with: @campaign.user_id
-    click_on "Update Campaign"
+      fill_in :campaign_name, with: 'Updated Campaign Name'
+      fill_in :campaign_rate, with: 5
+      fill_in :campaign_reach, with: 10
+      select :Active, from: :campaign_status
+      click_on 'Update Campaign'
 
-    assert_text "Campaign was successfully updated"
-    click_on "Back"
+      assert_text 'Campaign was successfully updated'
+      click_on 'Back'
+    end
+
+    should 'should not update Campaign if name is empty' do
+      campaign = create(:campaign, user: @user)
+      sign_in @user
+      
+      visit edit_campaign_url(campaign)
+
+      fill_in :campaign_name, with: ''
+      click_on 'Update Campaign'
+
+      assert_text "Name can't be blank"
+    end
+
+    should 'should not update Campaign if rate is empty' do
+      campaign = create(:campaign, user: @user)
+      sign_in @user
+      
+      visit edit_campaign_url(campaign)
+
+      fill_in :campaign_rate, with: ''
+      click_on 'Update Campaign'
+
+      assert_text 'Rate is not a number'
+    end
   end
 
-  test "should destroy Campaign" do
-    visit campaign_url(@campaign)
-    click_on "Destroy this campaign", match: :first
+  test 'should destroy Campaign' do
+    campaign = create(:campaign, user: @user)
+    sign_in @user
 
-    assert_text "Campaign was successfully destroyed"
+    visit campaign_url(campaign)
+    click_on 'Destroy this campaign', match: :first
+
+    assert_text 'Campaign was successfully destroyed'
   end
 end
