@@ -2,4 +2,8 @@
 @import 'normalize.css';
 @import 'variables';
 @import 'actiontext.css';
-@import 'devise'
+@import 'devise';
+
+.container {
+  margin: 20px;
+}
