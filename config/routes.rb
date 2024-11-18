@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   
   devise_for :users
   
-  resources :campaigns
+  resources :campaigns do
+    resources :tasks
+  end
   
   if Rails.env.development?
     get 'prototypes' => 'prototypes#index'

@@ -3,6 +3,7 @@ require 'test_helper'
 class CampaignTest < ActiveSupport::TestCase
   context 'associations' do
     should belong_to(:user)
+    should have_many(:tasks).dependent(:destroy)
   end
 
   context 'validations' do

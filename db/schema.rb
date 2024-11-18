@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_11_16_213158) do
+ActiveRecord::Schema[8.0].define(version: 2024_11_17_013929) do
   create_table "action_text_rich_texts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.text "body", size: :long
@@ -63,6 +63,19 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_16_213158) do
     t.index ["user_id"], name: "index_campaigns_on_user_id"
   end
 
+  create_table "tasks", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "campaign_id", null: false
+    t.string "description", default: "", null: false
+    t.integer "status", default: 0, null: false
+    t.date "due_on"
+    t.integer "kind", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["campaign_id"], name: "index_tasks_on_campaign_id"
+    t.index ["user_id"], name: "index_tasks_on_user_id"
+  end
+
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "first_name", default: "", null: false
     t.string "last_name", default: "", null: false
@@ -85,4 +98,6 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_16_213158) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "campaigns", "users"
+  add_foreign_key "tasks", "campaigns"
+  add_foreign_key "tasks", "users"
 end

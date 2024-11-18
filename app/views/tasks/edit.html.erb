@@ -1,0 +1,12 @@
+<% content_for :title, "Editing task" %>
+
+<h1>Editing task</h1>
+
+<%= render "form", campaign: @campaign, task: @task %>
+
+<br>
+
+<div>
+  <%= link_to "Show this task", campaign_task_path(@campaign, @task) %> |
+  <%= link_to "Back to tasks", campaign_tasks_path(@campaign) %>
+</div>
