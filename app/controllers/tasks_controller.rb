@@ -69,7 +69,7 @@ class TasksController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def task_params
-    params.expect(task: %i[description status due_on kind]).tap do |task|
+    params.expect(task: %i[description status due_on kind rate engagement_rate reach clicks]).tap do |task|
       task[:user] = current_user
       task[:campaign] = @campaign
     end
