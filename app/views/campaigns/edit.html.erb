@@ -5,6 +5,7 @@
   <div class="actions">
     <%= link_to "View", @campaign %> |
     <%= link_to "Campaigns", campaigns_path %>
+    <%= button_to :Delete, @campaign, method: :delete, data: { turbo_confirm: t('form.confirmation') } %>
   </div>
 </header>
 

@@ -23,7 +23,6 @@ class CampaignsTest < BaseSystemTestCase
       click_on 'Create Campaign'
   
       assert_text 'Campaign was successfully created'
-      click_on 'Back'
     end
 
     should 'should not create campaign if name is empty' do
@@ -65,7 +64,6 @@ class CampaignsTest < BaseSystemTestCase
       click_on 'Update Campaign'
 
       assert_text 'Campaign was successfully updated'
-      click_on 'Back'
     end
 
     should 'should not update Campaign if name is empty' do
@@ -98,8 +96,9 @@ class CampaignsTest < BaseSystemTestCase
     sign_in @user
 
     visit campaign_url(campaign)
-    click_on 'Destroy this campaign', match: :first
-
+    page.accept_confirm do
+      click_on :Delete, match: :first
+    end
     assert_text 'Campaign was successfully destroyed'
   end
 end

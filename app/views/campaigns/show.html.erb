@@ -3,7 +3,7 @@
   <div class="actions">
     <%= link_to :Campaigns, campaigns_path %> | 
     <%= link_to :Edit, edit_campaign_path(@campaign) %>
-    <%= button_to :Delete, @campaign, method: :delete %>
+    <%= button_to :Delete, @campaign, method: :delete, data: { turbo_confirm: t('form.confirmation') } %>
   </div>
 </header>
 

@@ -30,8 +30,9 @@
 en:
   hello: "Hello world"
   authorization: You are not authorized to perform this action.
-  success: '%{class_name} was successfully %{status}.'
+  success: "%{class_name} was successfully %{status}."
   error: There were errors!
   notice: Notice!
   alert: Alert!
-  
+  form:
+    confirmation: Are you sure? This can't be undone!
