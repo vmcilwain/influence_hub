@@ -1,7 +1,14 @@
 <% content_for :title, "Editing campaign" %>
 
-<h1>Editing campaign</h1>
+<header class="header-container">
+  <h1 class="header">Editing campaign</h1>
+  <div class="actions">
+    <%= link_to "View", @campaign %> |
+    <%= link_to "Campaigns", campaigns_path %>
+  </div>
+</header>
 
+<main class="container">
   <% if @campaign.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(@campaign.errors.count, "error") %> prohibited this campaign from being saved:</h2>
@@ -14,32 +21,32 @@
     </div>
   <% end %>
 
-<%= form_with(model: @campaign) do |form| %>
-  <%= render "new_form_fields", form: form %>
+  <%= form_with(model: @campaign) do |form| %>
+    <%= render "new_form_fields", form: form %>
 
-  <div>
-    <%= form.label :engagement_rate, style: "display: block" %>
-    <%= form.text_field :engagement_rate %>
-  </div>
+    <fieldset class="content-row">
+      <div class="data-section">
+        <%= form.label :engagement_rate, class: :label %>
+        <%= form.text_field :engagement_rate, class: :input %>
+      </div>
+    </fieldset>
 
-  <div>
-    <%= form.label :reach, style: "display: block" %>
-    <%= form.text_field :reach %>
-  </div>
+    <fieldset class="content-row">
+      <div class="data-section">
+        <%= form.label :reach, class: :label %>
+        <%= form.text_field :reach, class: :input %>
+      </div>
+    </fieldset>
 
-  <div>
-    <%= form.label :clicks, style: "display: block" %>
-    <%= form.text_field :clicks %>
-  </div>
+    <fieldset class="content-row">
+      <div class="data-section">
+        <%= form.label :clicks, class: :label %>
+        <%= form.text_field :clicks, class: :input %>
+      </div>
+    </fieldset>
 
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>
-
-<br>
-
-<div>
-  <%= link_to "Show this campaign", @campaign %> |
-  <%= link_to "Back to campaigns", campaigns_path %>
-</div>
+    <div class="actions">
+      <%= form.submit %>
+    </div>
+  <% end %>
+</main>

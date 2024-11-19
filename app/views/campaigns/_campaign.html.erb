@@ -1,42 +1,21 @@
-<div id="<%= dom_id campaign %>">
-  <p>
-    <strong>User:</strong>
-    <%= campaign.user_id %>
-  </p>
+<tr id="<%= dom_id campaign %>">
+  <td>
+    <%= link_to campaign.name, campaign %>
+  </td>
 
-  <p>
-    <strong>Name:</strong>
-    <%= campaign.name %>
-  </p>
-
-  <p>
-    <strong>Description:</strong>
-    <%= campaign.description %>
-  </p>
-
-  <p>
-    <strong>Status:</strong>
+  <td>
     <%= campaign.status %>
-  </p>
+  </td>
 
-  <p>
-    <strong>Rate:</strong>
+  <td>
     <%= campaign.rate %>
-  </p>
+  </td>
 
-  <p>
-    <strong>Engagement rate:</strong>
-    <%= campaign.engagement_rate %>
-  </p>
-
-  <p>
-    <strong>Reach:</strong>
-    <%= campaign.reach %>
-  </p>
-
-  <p>
-    <strong>Clicks:</strong>
-    <%= campaign.clicks %>
-  </p>
-
-</div>
+  <td>
+    <%= campaign.created_at %>
+  </td>
+  <td class="table-actions">
+    <%= link_to "Edit", edit_campaign_path(campaign) %>
+    <%= button_to "Delete", campaign, method: :delete, data: { confirm: "Are you sure?" } %>
+  </td>
+</tr>

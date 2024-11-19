@@ -1,16 +1,25 @@
-<p style="color: green"><%= notice %></p>
-
 <% content_for :title, "Campaigns" %>
 
-<h1>Campaigns</h1>
+<header class="header-container">
+  <h1 class="header">Campaigns</h1>
+  <div class="actions">
+    <%= link_to "New", new_campaign_path %>
+  </div>
+</header>
 
-<div id="campaigns">
-  <% @campaigns.each do |campaign| %>
-    <%= render campaign %>
-    <p>
-      <%= link_to "Show this campaign", campaign %>
-    </p>
-  <% end %>
-</div>
+<main class="container">
+  <p style="color: green"><%= notice %></p>
 
-<%= link_to "New campaign", new_campaign_path %>
+  <table id="campaigns">
+    <thead>
+      <th>Name</th>
+      <th>Status</th>
+      <th>Rate</th>
+      <th>Created On</th>
+      <th></th>
+    </thead>
+    <tbody>
+      <%= render @campaigns %>
+    </tbody>
+  </table>
+</main>

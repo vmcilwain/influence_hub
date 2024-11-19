@@ -1,10 +1,38 @@
-<p style="color: green"><%= notice %></p>
+<header class="header-container">
+  <h1 class="header"><%= @campaign.name %></h1>
+  <div class="actions">
+    <%= link_to :Campaigns, campaigns_path %> | 
+    <%= link_to :Edit, edit_campaign_path(@campaign) %>
+    <%= button_to :Delete, @campaign, method: :delete %>
+  </div>
+</header>
 
-<%= render @campaign %>
 
-<div>
-  <%= link_to "Edit this campaign", edit_campaign_path(@campaign) %> |
-  <%= link_to "Back to campaigns", campaigns_path %>
+ <main class="content-wrapper">
+  <p style="color: green"><%= notice %></p>
+  
+  <div class="content-row">
+    <div class="data-section">
+      <div class="label">Rate</div>
+      <div class="value">
+        <%= number_to_currency(@campaign.rate) %>
+      </div>
+    </div>
 
-  <%= button_to "Destroy this campaign", @campaign, method: :delete %>
-</div>
+    <div class="data-section">
+      <div class="label">Status</div>
+      <div class="value">
+        <%= @campaign.status.titleize %>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-row">
+    <div class="data-section full-width">
+      <div class="label">Description</div>
+      <div class="value">
+        <%= @campaign.description %>
+      </div>
+    </div>
+  </div>
+</main>
