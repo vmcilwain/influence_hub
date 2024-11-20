@@ -22,3 +22,17 @@ Campaign.create!(
   name: 'Instagram Campaign',
   rate: 1.5 
 )
+
+%i[not_started in_progress complete abandoned].each do |status|
+  2.times do
+    Task.create!(
+      user: user,
+      campaign: Campaign.first,
+      description: Faker::Lorem.sentence,
+      details: Faker::Lorem.sentences(number: 3).join(' '),
+      due_on: Time.zone.now,
+      status: status,
+      kind: %i[deliverable milestone approval post blog].sample
+    )
+  end
+end

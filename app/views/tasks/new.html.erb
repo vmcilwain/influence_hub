@@ -1,11 +1,10 @@
-<% content_for :title, "New task" %>
+<% content_for :title, "New task for #{@campaign.name}" %>
 
-<h1>New task</h1>
+<header class="header-container">
+  <h1 class="header">New Task for <%= @campaign.name %></h1>
+  <div class="actions">
+    <%= link_to :Campaign, @campaign %>
+  </div>
+</header>
 
 <%= render "form", campaign: @campaign, task: @task %>
-
-<br>
-
-<div>
-  <%= link_to "Back to tasks", campaign_tasks_path(@campaign) %>
-</div>

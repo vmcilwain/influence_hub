@@ -10,29 +10,59 @@
 
  <main class="content-wrapper">
   <p style="color: green"><%= notice %></p>
-  
-  <div class="content-row">
-    <div class="data-section">
-      <div class="label">Rate</div>
-      <div class="value">
-        <%= number_to_currency(@campaign.rate) %>
+  <section>
+    <header class="subheader-container">
+      <h2 class="subheader">Details</h2>
+    </header>
+
+    <div class="content-row">
+      <div class="data-section">
+        <div class="label">Rate</div>
+        <div class="value">
+          <%= number_to_currency(@campaign.rate) %>
+        </div>
+      </div>
+
+      <div class="data-section">
+        <div class="label">Status</div>
+        <div class="value">
+          <%= @campaign.status.titleize %>
+        </div>
       </div>
     </div>
 
-    <div class="data-section">
-      <div class="label">Status</div>
-      <div class="value">
-        <%= @campaign.status.titleize %>
+    <div class="content-row">
+      <div class="data-section">
+        <div class="label">Description</div>
+        <div class="value">
+          <%= @campaign.description %>
+        </div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <div class="content-row">
-    <div class="data-section">
-      <div class="label">Description</div>
-      <div class="value">
-        <%= @campaign.description %>
+  <section>
+    <header class="subheader-container">
+      <h2 class="subheader">Tasks</h2>
+      <div class="actions">
+        <%= link_to :New, new_campaign_task_path(@campaign) %>
       </div>
-    </div>
-  </div>
+    </header>
+
+    <% @tasks.each do |kind, tasks| %>
+      <h3><%= kind.titleize %></h3>
+      
+      <table>
+        <thead>
+          <th>Due On</th>
+          <th>Status</th>
+          <th>Description</th>
+          <th>Actions</th>
+        </thead>
+        <tbody>
+          <%= render tasks %>
+        </tbody>
+      </table>
+    <% end %>
+  </section>
 </main>

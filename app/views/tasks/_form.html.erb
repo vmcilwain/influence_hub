@@ -1,52 +1,64 @@
-<%= form_with(model: [campaign, task]) do |form| %>
-  <% if task.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h2>
+<main class="container">
+  <%= form_with(model: [campaign, task]) do |form| %>
+    <% if task.errors.any? %>
+      <div style="color: red">
+        <h2><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h2>
 
-      <ul>
-        <% task.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+        <ul>
+          <% task.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <fieldset class="content-row">
+      <div class="data-section">
+        <%= form.label :description, class: :label %>
+        <%= form.text_field :description, class: :input %>
+      </div>
+    </fieldset>
+
+    <fieldset class="content-row">
+      <div class="data-section">
+        <%= form.label :status, class: :label %>
+        <%= form.select :status, {
+          "Not Started": 'not_started',
+          "In Progress": 'in_progress',
+          Complete: 'complete',
+          Abandoned: 'abandoned'
+        }, {}, class: :input %>
+      </div>
+    </fieldset>
+
+    <fieldset class="content-row">
+      <div class="data-section">
+        <%= form.label :due_on, class: :label %>
+        <%= form.date_field :due_on, class: :input %>
+      </div>
+    </fieldset>
+
+    <fieldset class="content-row">
+      <div class="data-section">
+        <%= form.label :kind, class: :label %>
+        <%= form.select :kind, {
+          Deliverable: 'deliverable',
+          Milestone: 'milestone',
+          Approval: 'approval',
+          Post: 'post',
+          Blog: 'blog'
+        }, {}, class: :input %>
+      </div>
+    </fieldset>
+
+    <fieldset class="content-row">
+      <div class="data-section">
+        <%= form.label :details, class: :label %>
+        <%= form.rich_text_area :details %>
+      </div>
+    </fieldset>
+    <div>
+      <%= form.submit %>
     </div>
   <% end %>
-
-  <div>
-    <%= form.label :description, style: "display: block" %>
-    <%= form.text_field :description %>
-  </div>
-
-  <div>
-    <%= form.label :status, style: "display: block" %>
-    <%= form.select :status, {
-      "Not Started": 'not_started',
-      "In Progress": 'in_progress',
-      Complete: 'complete',
-      Abandoned: 'abandoned'
-    } %>
-  </div>
-
-  <div>
-    <%= form.label :due_on, style: "display: block" %>
-    <%= form.date_field :due_on %>
-  </div>
-
-  <div>
-    <%= form.label :kind, style: "display: block" %>
-    <%= form.select :kind, {
-      Deliverable: 'deliverable',
-      Milestone: 'milestone',
-      Approval: 'approval',
-      Post: 'post',
-      Blog: 'blog'
-    } %>
-  </div>
-
-  <div>
-    <%= form.label :details, style: "display: block" %>
-    <%= form.rich_text_area :details %>
-  </div>
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>
+</main>

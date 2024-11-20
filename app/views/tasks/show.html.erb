@@ -1,10 +1,53 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @task %>
+<header class="header-container">
+  <h1 class="header">Edit Task for <%= @campaign.name %></h1>
+  <div class="actions">
+    <%= link_to :Campaign, @campaign %>
+    <%= link_to :Edit, edit_campaign_task_path(@campaign, @task) %> |
+    <%= button_to :Delete, [@campaign, @task], method: :delete, data: { turbo_confirm: t('form.confirmation') } %>
+  </div>
+</header>
 
-<div>
-  <%= link_to "Edit this task", edit_campaign_task_path(@campaign, @task) %> |
-  <%= link_to "Back to tasks", campaign_tasks_path(@campaign) %>
+<main class="content-wrapper">
+  <div class="content-row">
+    <div class="data-section">
+      <div class="label">Due On</div>
+      <div class="value">
+        <%= @task.due_on %>
+      </div>
+    </div>
 
-  <%= button_to "Destroy this task", campaign_task_path(@campaign, @task), method: :delete %>
-</div>
+    <div class="data-section">
+      <div class="label">Status</div>
+      <div class="value">
+        <%= @task.status.titleize %>
+      </div>
+    </div>
+
+    <div class="data-section">
+      <div class="label">Kind</div>
+      <div class="value">
+        <%= @task.kind %>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-row">
+    <div class="data-section">
+      <div class="label">Description</div>
+      <div class="value">
+        <%= @task.description %>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-row">
+    <div class="data-section">
+      <div class="label">Details</div>
+      <div class="value">
+        <%= @task.details %>
+      </div>
+    </div>
+  </div>
+</main>

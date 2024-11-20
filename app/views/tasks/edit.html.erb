@@ -1,12 +1,11 @@
-<% content_for :title, "Editing task" %>
+<% content_for :title, "Editing task for #{@campaign.name}" %>
 
-<h1>Editing task</h1>
+<header class="header-container">
+  <h1 class="header">Edit Task for <%= @campaign.name %></h1>
+  <div class="actions">
+    <%= link_to :Campaign, @campaign %>
+    <%= button_to :Delete, [@campaign, @task], method: :delete, data: { turbo_confirm: t('form.confirmation') } %>
+  </div>
+</header>
 
 <%= render "form", campaign: @campaign, task: @task %>
-
-<br>
-
-<div>
-  <%= link_to "Show this task", campaign_task_path(@campaign, @task) %> |
-  <%= link_to "Back to tasks", campaign_tasks_path(@campaign) %>
-</div>

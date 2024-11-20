@@ -48,7 +48,6 @@ class TasksTest < BaseSystemTestCase
       click_on 'Create Task'
 
       assert_text "Due on can't be blank"
-      click_on 'Back'
     end
   end
 
@@ -68,8 +67,9 @@ class TasksTest < BaseSystemTestCase
     task = create(:task, campaign: @campaign)
 
     visit campaign_task_url(@campaign, task)
-    
-    click_on 'Destroy this task', match: :first
+    page.accept_confirm do
+      click_on :Delete, match: :first
+    end
 
     assert_text 'Task was successfully destroyed'
   end

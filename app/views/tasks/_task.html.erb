@@ -1,32 +1,15 @@
-<div id="<%= dom_id task %>">
-  <p>
-    <strong>User:</strong>
-    <%= task.user_id %>
-  </p>
-
-  <p>
-    <strong>Campaign:</strong>
-    <%= task.campaign_id %>
-  </p>
-
-  <p>
-    <strong>Description:</strong>
+<tr id="<%= dom_id task %>">
+  <td>
+    <%= link_to task.due_on, [@campaign, task] %>
+  </td>
+  <td>
+    <%= task.status.titleize %>
+  </td>
+  <td>
     <%= task.description %>
-  </p>
-
-  <p>
-    <strong>Status:</strong>
-    <%= task.status %>
-  </p>
-
-  <p>
-    <strong>Due on:</strong>
-    <%= task.due_on %>
-  </p>
-
-  <p>
-    <strong>Kind:</strong>
-    <%= task.kind %>
-  </p>
-
-</div>
+  </td>
+  <td>
+    <%= link_to :Edit, edit_campaign_task_path(@campaign, task) %>
+    <%= button_to :Delete, [@campaign, task], method: :delete, data: { turbo_confirm: t('form.confirmation') } %>
+  </td>
+</tr>
