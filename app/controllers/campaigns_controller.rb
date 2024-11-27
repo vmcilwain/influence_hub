@@ -9,7 +9,7 @@ class CampaignsController < ApplicationController
   # GET /campaigns/1 or /campaigns/1.json
   def show
     authorize @campaign
-    @tasks = @campaign.tasks.order('kind, created_at').group_by(&:kind)
+    @tasks = @campaign.tasks.order('kind, created_at')#.group_by(&:kind)
   end
 
   # GET /campaigns/new

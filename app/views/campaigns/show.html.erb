@@ -49,8 +49,57 @@
       </div>
     </header>
 
-    <% @tasks.each do |kind, tasks| %>
-      <h3><%= kind.titleize %></h3>
+    <div data-controller="kanban">
+      <div class="kanban-column">
+        <h3>Abandoned</h3>
+        <div class="kanban-items" data-kanban-target="items" data-status="abandoned">
+          <% @tasks.where(status: 'abandoned').each do |task| %>
+            <div class="kanban-item" data-task-id="<%= task.id %>" data-campaign-id="<%= task.campaign.id %>">
+              <%= task.description %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+ 
+      <div class="kanban-column">
+        <h3>To Do</h3>
+        <div class="kanban-items" data-kanban-target="items" data-status="not_started">
+          <% @tasks.where(status: 'not_started').each do |task| %>
+            <div class="kanban-item" data-task-id="<%= task.id %>" data-campaign-id="<%= task.campaign.id %>">
+              <%= task.description %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="kanban-column">
+        <h3>In Progress</h3>
+        <div class="kanban-items" data-kanban-target="items" data-status="in_progress">
+          <% @tasks.where(status: 'in_progress').each do |task| %>
+            <div class="kanban-item" data-task-id="<%= task.id %>" data-campaign-id="<%= task.campaign.id %>">
+              <%= task.description %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="kanban-column">
+        <h3>Done</h3>
+        <div class="kanban-items" data-kanban-target="items" data-status="complete">
+          <% @tasks.where(status: 'complete').each do |task| %>
+            <div class="kanban-item" data-task-id="<%= task.id %>" data-campaign-id="<%= task.campaign.id %>">
+              <%= task.description %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- non kanban task list
+    <%# @tasks.each do |kind, tasks| %>
+      <h3><%#= kind.titleize %></h3>
       
       <table>
         <thead>
@@ -60,9 +109,10 @@
           <th>Actions</th>
         </thead>
         <tbody>
-          <%= render tasks %>
+          <%#= render tasks %>
         </tbody>
       </table>
-    <% end %>
+    <%# end %>
+     -->
   </section>
 </main>

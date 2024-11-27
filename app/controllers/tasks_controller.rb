@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   before_action :set_campaign
-  before_action :set_task, only: %i[show edit update destroy]
+  before_action :set_task, only: %i[show edit update destroy update_status]
 
   # GET /tasks or /tasks.json
   def index
@@ -42,6 +42,20 @@ class TasksController < ApplicationController
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @task.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def update_status
+    if @task.update(task_params)
+      respond_to do |format|
+        format.json { head :no_content }
+        format.html { redirect_to tasks_path, notice: 'Task updated successfully.' }
+      end
+    else
+      respond_to do |format|
+        format.json { render json: @task.errors, status: :unprocessable_entity }
+        format.html { render :edit }
       end
     end
   end

@@ -1,0 +1,27 @@
+.kanban-column {
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin: 5px;
+  border-radius: 5px;
+  background: #f9f9f9;
+  display: inline-block;
+  width: 30%;
+  vertical-align: top;
+}
+
+.kanban-items {
+  min-height: 150px;
+}
+
+.kanban-item {
+  background: #fff;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 3px;
+  cursor: grab;
+}
+
+.kanban-item:active {
+  cursor: grabbing;
+}
