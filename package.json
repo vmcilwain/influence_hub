@@ -13,6 +13,7 @@
     "@hotwired/turbo-rails": "^8.0.12",
     "@rails/actiontext": "^8.0.0",
     "sass": "^1.81.0",
+    "sortablejs": "^1.15.4",
     "trix": "^2.1.8"
   }
 }
