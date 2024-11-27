@@ -7,8 +7,7 @@
   </div>
 </header>
 
-
- <main class="content-wrapper">
+<main class="content-wrapper">
   <p style="color: green"><%= notice %></p>
   <section>
     <header class="subheader-container">
@@ -55,7 +54,15 @@
         <div class="kanban-items" data-kanban-target="items" data-status="abandoned">
           <% @tasks.where(status: 'abandoned').each do |task| %>
             <div class="kanban-item" data-task-id="<%= task.id %>" data-campaign-id="<%= task.campaign.id %>">
-              <%= task.description %>
+              <%= link_to edit_campaign_task_path(@campaign, task), 
+                class: "kanban-item",
+                data: { 
+                  task_id: task.id,
+                  campaign_id: task.campaign.id,
+                  turbo_frame: "task-edit-modal" 
+                } do %>
+                <%= task.description %>
+              <% end %>
             </div>
           <% end %>
         </div>
@@ -66,7 +73,15 @@
         <div class="kanban-items" data-kanban-target="items" data-status="not_started">
           <% @tasks.where(status: 'not_started').each do |task| %>
             <div class="kanban-item" data-task-id="<%= task.id %>" data-campaign-id="<%= task.campaign.id %>">
-              <%= task.description %>
+              <%= link_to edit_campaign_task_path(@campaign, task), 
+                class: "kanban-item",
+                data: { 
+                  task_id: task.id,
+                  campaign_id: task.campaign.id,
+                  turbo_frame: "task-edit-modal" 
+                } do %>
+                <%= task.description %>
+              <% end %>
             </div>
           <% end %>
         </div>
@@ -77,7 +92,15 @@
         <div class="kanban-items" data-kanban-target="items" data-status="in_progress">
           <% @tasks.where(status: 'in_progress').each do |task| %>
             <div class="kanban-item" data-task-id="<%= task.id %>" data-campaign-id="<%= task.campaign.id %>">
-              <%= task.description %>
+              <%= link_to edit_campaign_task_path(@campaign, task), 
+                class: "kanban-item",
+                data: { 
+                  task_id: task.id,
+                  campaign_id: task.campaign.id,
+                  turbo_frame: "task-edit-modal" 
+                } do %>
+                <%= task.description %>
+              <% end %>
             </div>
           <% end %>
         </div>
@@ -88,7 +111,15 @@
         <div class="kanban-items" data-kanban-target="items" data-status="complete">
           <% @tasks.where(status: 'complete').each do |task| %>
             <div class="kanban-item" data-task-id="<%= task.id %>" data-campaign-id="<%= task.campaign.id %>">
-              <%= task.description %>
+              <%= link_to edit_campaign_task_path(@campaign, task), 
+                class: "kanban-item",
+                data: { 
+                  task_id: task.id,
+                  campaign_id: task.campaign.id,
+                  turbo_frame: "task-edit-modal" 
+                } do %>
+                <%= task.description %>
+              <% end %>
             </div>
           <% end %>
         </div>
@@ -117,3 +148,5 @@
      -->
   </section>
 </main>
+
+<%= turbo_frame_tag "task-edit-modal" %>

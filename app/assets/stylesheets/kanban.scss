@@ -58,3 +58,64 @@
     flex: 1 1 100%; // Columns stack vertically on smaller screens
   }
 }
+
+// #task-edit-modal:empty {
+//   display: none;
+// }
+
+#task-edit-modal {
+  &:empty {
+    display: none;
+  }
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 95%;
+  max-width: 800px;
+  max-height: 90vh;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  z-index: 1000;
+  overflow-y: auto;
+
+  .modal-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    
+    h2 {
+      margin: 0;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 10px;
+      right: 15px;  // Positions the close button in the upper right
+      font-size: 24px;
+      color: #666;
+      text-decoration: none;
+      line-height: 1;
+      padding: 5px;
+      
+      &:hover {
+        color: #333;
+      }
+    }
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    
+    trix-editor {
+      min-height: 200px;
+      max-height: 400px;
+      overflow-y: auto;
+      width: 100%;
+    }
+  }
+}

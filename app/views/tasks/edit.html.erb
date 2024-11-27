@@ -1,11 +1,16 @@
-<% content_for :title, "Editing task for #{@campaign.name}" %>
+<%= turbo_frame_tag "task-edit-modal", data: { controller: "turbo-modal" } do %>
+  <div class="turbo-frame-overlay"></div>
+  <% content_for :title, "Editing task for #{@campaign.name}" %>
+  <%= link_to "×", "#", 
+        class: "modal-close", 
+        data: { action: "click->turbo-modal#hideModal" } %>
+  <header class="header-container">
+    <h1 class="header">Edit Task for <%= @campaign.name %></h1>
+    <div class="actions">
+      <%= link_to :Campaign, @campaign %>
+      <%= button_to :Delete, [@campaign, @task], method: :delete, data: { turbo_confirm: t('form.confirmation') } %>
+    </div>
+  </header>
 
-<header class="header-container">
-  <h1 class="header">Edit Task for <%= @campaign.name %></h1>
-  <div class="actions">
-    <%= link_to :Campaign, @campaign %>
-    <%= button_to :Delete, [@campaign, @task], method: :delete, data: { turbo_confirm: t('form.confirmation') } %>
-  </div>
-</header>
-
-<%= render "form", campaign: @campaign, task: @task %>
+  <%= render "form", campaign: @campaign, task: @task %>
+<% end %>

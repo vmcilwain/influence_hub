@@ -9,3 +9,6 @@ application.register("hello", HelloController)
 
 import KanbanController from "./kanban_controller"
 application.register("kanban", KanbanController)
+
+import TurboModalController from "./turbo_modal_controller"
+application.register("turbo-modal", TurboModalController)

@@ -16,7 +16,12 @@ class TasksController < ApplicationController
   end
 
   # GET /tasks/1/edit
-  def edit; end
+  def edit
+    respond_to do |format|
+      format.html
+      format.turbo_stream
+    end
+  end
 
   # POST /tasks or /tasks.json
   def create
@@ -37,6 +42,7 @@ class TasksController < ApplicationController
   def update
     respond_to do |format|
       if @task.update(task_params)
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(@task, partial: 'tasks/task', locals: { campaign: @campaign, task: @task }) }
         format.html { redirect_to campaign_task_url(@campaign, @task), success: 'Task was successfully updated.' }
         format.json { render :show, status: :ok, location: @task }
       else
