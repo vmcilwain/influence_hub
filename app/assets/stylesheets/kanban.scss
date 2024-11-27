@@ -1,27 +1,60 @@
-.kanban-column {
-  border: 1px solid #ddd;
-  padding: 10px;
-  margin: 5px;
-  border-radius: 5px;
-  background: #f9f9f9;
-  display: inline-block;
-  width: 30%;
-  vertical-align: top;
+.kanban-container {
+  display: flex;
+  flex-wrap: wrap; // Allows wrapping for smaller screens
+  gap: 15px; // Space between columns
+  margin: 20px auto;
 }
 
+// Kanban column styling
+.kanban-column {
+  flex: 1 1 calc(25% - 15px); // Four columns in a row
+  min-width: 250px; // Prevents columns from shrinking too small
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  box-sizing: border-box;
+
+  h3 {
+    margin: 0 0 10px;
+    text-align: center;
+    font-size: 1.2rem;
+    color: #333;
+  }
+}
+
+// Kanban items container
 .kanban-items {
   min-height: 150px;
+  display: flex;
+  flex-direction: column; // Stack items vertically
+  gap: 10px; // Space between items
 }
 
+// Individual kanban item styling
 .kanban-item {
   background: #fff;
   border: 1px solid #ccc;
   padding: 10px;
-  margin: 5px 0;
   border-radius: 3px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   cursor: grab;
+  transition: transform 0.2s;
+
+  &:active {
+    cursor: grabbing;
+    transform: scale(1.02); // Slight zoom effect on grab
+  }
+
+  &:hover {
+    background: #f0f0f0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  }
 }
 
-.kanban-item:active {
-  cursor: grabbing;
+// Responsive adjustments for smaller screens
+@media (max-width: 768px) {
+  .kanban-column {
+    flex: 1 1 100%; // Columns stack vertically on smaller screens
+  }
 }
