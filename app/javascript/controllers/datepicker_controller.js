@@ -14,8 +14,7 @@ export default class extends Controller {
       allowInput: true,
       disableMobile: true,
       monthSelectorType: "static",
-      position: "below",
-      appendTo: this.element.parentElement,
+      position: "auto",
       onChange: (selectedDates, dateStr) => {
         console.log("Date selected:", dateStr)
       }

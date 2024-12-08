@@ -57,13 +57,16 @@
 
     <div class="form-group">
       <%= f.label :due_on, class: "required" %>
-      <%= f.text_field :due_on,
-          data: { controller: "datepicker" },
-          class: "form-control #{'is-invalid' if task.errors[:due_on].any?}",
-          required: true,
-          placeholder: "Select due date",
-          autocomplete: "off",
-          aria: { required: true, describedby: "due-on-hint due-on-error" } %>
+      <div class="datepicker-wrapper" style="position: relative;">
+        <%= f.text_field :due_on,
+            data: { controller: "datepicker" },
+            class: "form-control #{'is-invalid' if task.errors[:due_on].any?}",
+            required: true,
+            placeholder: "Select due date",
+            autocomplete: "off",
+            aria: { required: true, describedby: "due-on-hint due-on-error" } %>
+        <span class="calendar-icon">📅</span>
+      </div>
       <span id="due-on-hint" class="hint-text">Select the due date for this task</span>
       <% if task.errors[:due_on].any? %>
         <div id="due-on-error" class="invalid-feedback">
