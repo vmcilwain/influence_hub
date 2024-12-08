@@ -1,79 +1,85 @@
-<header class="header-container">
-  <h1 class="header"><%= @campaign.name %></h1>
-  <div class="actions">
-    <%= link_to :Campaigns, campaigns_path %> | 
-    <%= link_to :Edit, edit_campaign_path(@campaign) %>
-    <%= button_to :Delete, @campaign, method: :delete, data: { turbo_confirm: t('form.confirmation') } %>
+<main class="campaign-show" role="main" aria-labelledby="campaign-title">
+  <header class="campaign-header">
+    <div class="campaign-title-wrapper">
+      <h1 id="campaign-title" class="campaign-title"><%= @campaign.name %></h1>
+      <div class="campaign-nav" role="navigation" aria-label="Campaign navigation">
+        <%= link_to campaigns_path, class: "button button-secondary", "aria-label" => "Back to campaigns list" do %>
+          <span aria-hidden="true">&larr;</span> All Campaigns
+        <% end %>
+        <%= link_to edit_campaign_path(@campaign), class: "button button-secondary", "aria-label" => "Edit campaign" do %>
+          <span aria-hidden="true">✎</span> Edit
+        <% end %>
+        <%= button_to @campaign, 
+            method: :delete, 
+            class: "button button-danger",
+            data: { turbo_confirm: t('form.confirmation') },
+            "aria-label" => "Delete campaign" do %>
+          <span aria-hidden="true">×</span> Delete
+        <% end %>
+      </div>
+    </div>
+  </header>
+
+  <% if notice %>
+    <div class="notice" role="alert"><%= notice %></div>
+  <% end %>
+
+  <section class="campaign-details" aria-labelledby="details-heading">
+    <h2 id="details-heading" class="section-title">Details</h2>
+    <div class="details-grid">
+      <div class="detail-item">
+        <span class="detail-label">Rate</span>
+        <span class="detail-value"><%= number_to_currency(@campaign.rate) %></span>
+      </div>
+      <div class="detail-item">
+        <span class="detail-label">Status</span>
+        <span class="detail-value"><%= @campaign.status.titleize %></span>
+      </div>
+      <div class="detail-item detail-item-full">
+        <span class="detail-label">Description</span>
+        <div class="detail-value description"><%= @campaign.description %></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="tasks-header">
+    <h2 id="tasks-heading" class="section-title">Tasks</h2>
+    <%= link_to new_campaign_task_path(@campaign), 
+        class: "button button-primary new-task-button",
+        data: { turbo_frame: "task-edit-modal" },
+        "aria-label" => "Create new task" do %>
+      <span aria-hidden="true">+</span> New Task
+    <% end %>
   </div>
-</header>
 
-<main class="content-wrapper">
-  <p style="color: green"><%= notice %></p>
-  <section>
-    <header class="subheader-container">
-      <h2 class="subheader">Details</h2>
-    </header>
+  <div class="kanban-container" 
+       data-controller="kanban" 
+       role="region" 
+       aria-labelledby="tasks-heading">
+    <%= render "tasks/kanban_column", 
+        title: "To Do",
+        status: "not_started",
+        tasks: @tasks,
+        campaign: @campaign %>
 
-    <div class="content-row">
-      <div class="data-section">
-        <div class="label">Rate</div>
-        <div class="value">
-          <%= number_to_currency(@campaign.rate) %>
-        </div>
-      </div>
+    <%= render "tasks/kanban_column",
+        title: "In Progress",
+        status: "in_progress",
+        tasks: @tasks,
+        campaign: @campaign %>
 
-      <div class="data-section">
-        <div class="label">Status</div>
-        <div class="value">
-          <%= @campaign.status.titleize %>
-        </div>
-      </div>
-    </div>
+    <%= render "tasks/kanban_column",
+        title: "Done",
+        status: "complete",
+        tasks: @tasks,
+        campaign: @campaign %>
 
-    <div class="content-row">
-      <div class="data-section">
-        <div class="label">Description</div>
-        <div class="value">
-          <%= @campaign.description %>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <header class="subheader-container">
-      <h2 class="subheader">Tasks</h2>
-      <div class="actions">
-        <%= link_to :New, new_campaign_task_path(@campaign), data: { turbo_frame: "task-edit-modal" } %>
-      </div>
-    </header>
-
-    <div class="kanban-container" data-controller="kanban">
-      <%= render "tasks/kanban_column", 
-          title: "Abandoned",
-          status: "abandoned",
-          tasks: @tasks,
-          campaign: @campaign %>
-
-      <%= render "tasks/kanban_column",
-          title: "To Do",
-          status: "not_started",
-          tasks: @tasks,
-          campaign: @campaign %>
-
-      <%= render "tasks/kanban_column",
-          title: "In Progress",
-          status: "in_progress",
-          tasks: @tasks,
-          campaign: @campaign %>
-
-      <%= render "tasks/kanban_column",
-          title: "Done",
-          status: "complete",
-          tasks: @tasks,
-          campaign: @campaign %>
-    </div>
-  </section>
+    <%= render "tasks/kanban_column", 
+        title: "Abandoned",
+        status: "abandoned",
+        tasks: @tasks,
+        campaign: @campaign %>
+  </div>
 </main>
 
 <%= turbo_frame_tag "task-edit-modal" %>

@@ -1,10 +1,10 @@
-<%# Reusable kanban column partial %>
-<div class="kanban-column">
+<div class="kanban-column" role="region" aria-label="<%= title %> tasks">
   <h3><%= title %></h3>
   <div class="kanban-items" 
        data-kanban-target="items" 
        data-status="<%= status %>" 
-       id="items_<%= status %>">
+       id="items_<%= status %>"
+       role="list">
     <% tasks.where(status: status).each do |task| %>
       <%= render "tasks/task", task: task, campaign: campaign %>
     <% end %>
