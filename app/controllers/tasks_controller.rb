@@ -71,6 +71,7 @@ class TasksController < ApplicationController
     @task.destroy!
 
     respond_to do |format|
+      format.turbo_stream
       format.html { redirect_to campaign_tasks_url(@campaign), status: :see_other, success: 'Task was successfully destroyed.' }
       format.json { head :no_content }
     end

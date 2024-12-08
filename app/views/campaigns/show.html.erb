@@ -53,7 +53,7 @@
         <h3>Abandoned</h3>
         <div class="kanban-items" data-kanban-target="items" data-status="abandoned">
           <% @tasks.where(status: 'abandoned').each do |task| %>
-            <div class="kanban-item" data-task-id="<%= task.id %>" data-campaign-id="<%= task.campaign.id %>">
+            <div id="<%= dom_id(task) %>" class="kanban-item" data-task-id="<%= task.id %>" data-campaign-id="<%= task.campaign.id %>">
               <%= link_to edit_campaign_task_path(@campaign, task), 
                 class: "kanban-item",
                 data: { 
@@ -72,7 +72,7 @@
         <h3>To Do</h3>
         <div class="kanban-items" data-kanban-target="items" data-status="not_started">
           <% @tasks.where(status: 'not_started').each do |task| %>
-            <div class="kanban-item" data-task-id="<%= task.id %>" data-campaign-id="<%= task.campaign.id %>">
+            <div id="<%= dom_id(task) %>" class="kanban-item" data-task-id="<%= task.id %>" data-campaign-id="<%= task.campaign.id %>">
               <%= link_to edit_campaign_task_path(@campaign, task), 
                 class: "kanban-item",
                 data: { 
@@ -91,7 +91,7 @@
         <h3>In Progress</h3>
         <div class="kanban-items" data-kanban-target="items" data-status="in_progress">
           <% @tasks.where(status: 'in_progress').each do |task| %>
-            <div class="kanban-item" data-task-id="<%= task.id %>" data-campaign-id="<%= task.campaign.id %>">
+            <div id="<%= dom_id(task) %>" class="kanban-item" data-task-id="<%= task.id %>" data-campaign-id="<%= task.campaign.id %>">
               <%= link_to edit_campaign_task_path(@campaign, task), 
                 class: "kanban-item",
                 data: { 
@@ -110,7 +110,7 @@
         <h3>Done</h3>
         <div class="kanban-items" data-kanban-target="items" data-status="complete">
           <% @tasks.where(status: 'complete').each do |task| %>
-            <div class="kanban-item" data-task-id="<%= task.id %>" data-campaign-id="<%= task.campaign.id %>">
+            <div id="<%= dom_id(task) %>" class="kanban-item" data-task-id="<%= task.id %>" data-campaign-id="<%= task.campaign.id %>">
               <%= link_to edit_campaign_task_path(@campaign, task), 
                 class: "kanban-item",
                 data: { 
