@@ -1,0 +1,83 @@
+// Import base flatpickr styles
+@import "flatpickr/dist/flatpickr";
+
+/* Flatpickr customization */
+.flatpickr-calendar {
+  background-color: var(--background-color);
+  border: 2px solid var(--border-color);
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-family: inherit;
+  margin-top: 4px;
+
+  .flatpickr-months {
+    background-color: var(--primary-color);
+    border-radius: calc(var(--border-radius) - 2px) calc(var(--border-radius) - 2px) 0 0;
+    padding: var(--spacing-sm);
+    margin: -1px -1px 0 -1px;
+
+    .flatpickr-month {
+      color: var(--background-color);
+      fill: var(--background-color);
+    }
+
+    .flatpickr-prev-month,
+    .flatpickr-next-month {
+      color: var(--background-color);
+      fill: var(--background-color);
+      padding: var(--spacing-sm);
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+
+  .flatpickr-weekdays {
+    background-color: var(--background-color);
+    
+    .flatpickr-weekday {
+      color: var(--text-color);
+      font-weight: 500;
+      font-size: 90%;
+    }
+  }
+
+  .flatpickr-day {
+    color: var(--text-color);
+    border-radius: var(--border-radius);
+    margin: 2px;
+    height: 36px;
+    line-height: 36px;
+
+    &:hover {
+      background-color: var(--border-color);
+    }
+
+    &.selected {
+      background-color: var(--primary-color);
+      border-color: var(--primary-color);
+      color: var(--background-color);
+
+      &:hover {
+        background-color: var(--accent-color);
+        border-color: var(--accent-color);
+      }
+    }
+
+    &.today {
+      border-color: var(--accent-color);
+      color: var(--accent-color);
+      font-weight: bold;
+
+      &:hover {
+        background-color: var(--accent-color);
+        color: var(--background-color);
+      }
+    }
+
+    &.disabled {
+      color: var(--text-color-light);
+    }
+  }
+}
