@@ -1,68 +1,105 @@
+// Variables
+$kanban-bg-color: #f9f9f9;
+$kanban-border-color: #ddd;
+$kanban-item-bg: #fff;
+$kanban-item-border: #ccc;
+$kanban-shadow-color: rgba(0, 0, 0, 0.1);
+$kanban-text-color: #333;
+
+$spacing-xs: 5px;
+$spacing-sm: 10px;
+$spacing-md: 15px;
+$spacing-lg: 20px;
+
+$border-radius-sm: 3px;
+$border-radius-md: 5px;
+$border-radius-lg: 8px;
+
+$breakpoint-tablet: 768px;
+$breakpoint-mobile: 480px;
+
+// Kanban Container
 .kanban-container {
   display: flex;
-  flex-wrap: wrap; // Allows wrapping for smaller screens
-  gap: 15px; // Space between columns
-  margin: 20px auto;
+  flex-wrap: wrap;
+  gap: $spacing-md;
+  margin: $spacing-lg auto;
+  width: 100%;
 }
 
-// Kanban column styling
+// Kanban Column
 .kanban-column {
-  flex: 1 1 calc(25% - 15px); // Four columns in a row
-  min-width: 250px; // Prevents columns from shrinking too small
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  padding: 10px;
+  flex: 1 1 calc(25% - #{$spacing-md});
+  min-width: 250px;
+  background-color: $kanban-bg-color;
+  border: 1px solid $kanban-border-color;
+  border-radius: $border-radius-md;
+  padding: $spacing-sm;
   box-sizing: border-box;
+  transition: box-shadow 0.2s ease;
+
+  &:hover {
+    box-shadow: 0 2px 5px $kanban-shadow-color;
+  }
 
   h3 {
-    margin: 0 0 10px;
+    margin: 0 0 $spacing-sm;
     text-align: center;
     font-size: 1.2rem;
-    color: #333;
+    color: $kanban-text-color;
+    padding: $spacing-xs 0;
+    border-bottom: 1px solid $kanban-border-color;
   }
 }
 
-// Kanban items container
+// Kanban Items Container
 .kanban-items {
   min-height: 150px;
   display: flex;
-  flex-direction: column; // Stack items vertically
-  gap: 10px; // Space between items
+  flex-direction: column;
+  gap: $spacing-sm;
+  padding: $spacing-xs;
+
+  &--empty {
+    background: repeating-linear-gradient(
+      45deg,
+      $kanban-bg-color,
+      $kanban-bg-color 10px,
+      darken($kanban-bg-color, 2%) 10px,
+      darken($kanban-bg-color, 2%) 20px
+    );
+  }
 }
 
-// Individual kanban item styling
+// Kanban Item
 .kanban-item {
-  background: #fff;
-  border: 1px solid #ccc;
-  padding: 10px;
-  border-radius: 3px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  background: $kanban-item-bg;
+  border: 1px solid $kanban-item-border;
+  padding: $spacing-sm;
+  border-radius: $border-radius-sm;
+  box-shadow: 0 1px 3px $kanban-shadow-color;
   cursor: grab;
-  transition: transform 0.2s;
+  transition: all 0.2s ease;
+  user-select: none;
 
   &:active {
     cursor: grabbing;
-    transform: scale(1.02); // Slight zoom effect on grab
+    transform: scale(1.02);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   }
 
   &:hover {
-    background: #f0f0f0;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+    background: darken($kanban-item-bg, 2%);
+    box-shadow: 0 2px 5px $kanban-shadow-color;
   }
 }
 
-// Responsive adjustments for smaller screens
-@media (max-width: 768px) {
-  .kanban-column {
-    flex: 1 1 100%; // Columns stack vertically on smaller screens
-  }
-}
-
+// Modal Styles
 #task-edit-modal {
   &:empty {
     display: none;
   }
+
   position: fixed;
   top: 50%;
   left: 50%;
@@ -70,17 +107,17 @@
   width: 95%;
   max-width: 800px;
   max-height: 90vh;
-  background: #fff;
-  border-radius: 8px;
+  background: $kanban-item-bg;
+  border-radius: $border-radius-lg;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  padding: 20px;
+  padding: $spacing-lg;
   z-index: 1000;
   overflow-y: auto;
 
   .modal-header {
     display: flex;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: $spacing-lg;
     
     h2 {
       margin: 0;
@@ -88,16 +125,16 @@
 
     .modal-close {
       position: absolute;
-      top: 10px;
-      right: 15px;  // Positions the close button in the upper right
+      top: $spacing-sm;
+      right: $spacing-md;
       font-size: 24px;
-      color: #666;
+      color: lighten($kanban-text-color, 20%);
       text-decoration: none;
       line-height: 1;
-      padding: 5px;
+      padding: $spacing-xs;
       
       &:hover {
-        color: #333;
+        color: $kanban-text-color;
       }
     }
   }
@@ -105,7 +142,7 @@
   form {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: $spacing-md;
     
     trix-editor {
       min-height: 200px;
@@ -113,5 +150,25 @@
       overflow-y: auto;
       width: 100%;
     }
+  }
+}
+
+// Responsive Design
+@media (max-width: $breakpoint-tablet) {
+  .kanban-column {
+    flex: 1 1 calc(50% - #{$spacing-md});
+  }
+}
+
+@media (max-width: $breakpoint-mobile) {
+  .kanban-column {
+    flex: 1 1 100%;
+  }
+
+  #task-edit-modal {
+    width: 100%;
+    height: 100%;
+    max-height: 100vh;
+    border-radius: 0;
   }
 }

@@ -49,41 +49,29 @@
     </header>
 
     <div class="kanban-container" data-controller="kanban">
-      <div class="kanban-column">
-        <h3>Abandoned</h3>
-        <div class="kanban-items" data-kanban-target="items" data-status="abandoned" id="items_abandoned">
-          <% @tasks.where(status: 'abandoned').each do |task| %>
-            <%= render "tasks/task", task: task, campaign: @campaign %>
-          <% end %>
-        </div>
-      </div>
+      <%= render "tasks/kanban_column", 
+          title: "Abandoned",
+          status: "abandoned",
+          tasks: @tasks,
+          campaign: @campaign %>
 
-      <div class="kanban-column">
-        <h3>To Do</h3>
-        <div class="kanban-items" data-kanban-target="items" data-status="not_started" id="items_not_started">
-          <% @tasks.where(status: 'not_started').each do |task| %>
-            <%= render "tasks/task", task: task, campaign: @campaign %>
-          <% end %>
-        </div>
-      </div>
+      <%= render "tasks/kanban_column",
+          title: "To Do",
+          status: "not_started",
+          tasks: @tasks,
+          campaign: @campaign %>
 
-      <div class="kanban-column">
-        <h3>In Progress</h3>
-        <div class="kanban-items" data-kanban-target="items" data-status="in_progress" id="items_in_progress">
-          <% @tasks.where(status: 'in_progress').each do |task| %>
-            <%= render "tasks/task", task: task, campaign: @campaign %>
-          <% end %>
-        </div>
-      </div>
+      <%= render "tasks/kanban_column",
+          title: "In Progress",
+          status: "in_progress",
+          tasks: @tasks,
+          campaign: @campaign %>
 
-      <div class="kanban-column">
-        <h3>Done</h3>
-        <div class="kanban-items" data-kanban-target="items" data-status="complete" id="items_complete">
-          <% @tasks.where(status: 'complete').each do |task| %>
-            <%= render "tasks/task", task: task, campaign: @campaign %>
-          <% end %>
-        </div>
-      </div>
+      <%= render "tasks/kanban_column",
+          title: "Done",
+          status: "complete",
+          tasks: @tasks,
+          campaign: @campaign %>
     </div>
   </section>
 </main>

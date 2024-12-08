@@ -1,0 +1,12 @@
+<%# Reusable kanban column partial %>
+<div class="kanban-column">
+  <h3><%= title %></h3>
+  <div class="kanban-items" 
+       data-kanban-target="items" 
+       data-status="<%= status %>" 
+       id="items_<%= status %>">
+    <% tasks.where(status: status).each do |task| %>
+      <%= render "tasks/task", task: task, campaign: campaign %>
+    <% end %>
+  </div>
+</div>
