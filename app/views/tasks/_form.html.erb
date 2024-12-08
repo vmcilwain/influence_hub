@@ -1,66 +1,85 @@
-<div id="<%= dom_id(task) %>_form">
-  <%= form_with(model: [campaign, task], data: { turbo: true }) do |form| %>
-    <div id="flash_success" role="alert" class="flash-success"></div>
+<div class="campaign-form-container">
+  <%= form_with(model: [campaign, task], class: "campaign-form", data: { turbo: true }) do |f| %>
+    <div class="form-header">
+      <h1><%= task.new_record? ? "New Task" : "Edit Task" %></h1>
+    </div>
 
-    <% if task.errors.any? %>
-      <div id="error_message" style="color: red">
-        <h2><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h2>
+    <div class="form-group">
+      <%= f.label :description, class: "required" %>
+      <%= f.text_field :description,
+          aria: { required: true, describedby: "description-hint description-error" },
+          class: "form-control #{'is-invalid' if task.errors[:description].any?}",
+          placeholder: "Enter task description" %>
+      <span id="description-hint" class="hint-text">Provide a clear description of the task</span>
+      <% if task.errors[:description].any? %>
+        <div id="description-error" class="invalid-feedback">
+          <%= task.errors[:description].join(", ") %>
+        </div>
+      <% end %>
+    </div>
 
-        <ul>
-          <% task.errors.each do |error| %>
-            <li><%= error.full_message %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
+    <div class="form-group">
+      <%= f.label :status %>
+      <%= f.select :status,
+          {
+            "Not Started": 'not_started',
+            "In Progress": 'in_progress',
+            Complete: 'complete',
+            Abandoned: 'abandoned'
+          },
+          {},
+          { class: "form-control #{'is-invalid' if task.errors[:status].any?}" } %>
+      <% if task.errors[:status].any? %>
+        <div class="invalid-feedback">
+          <%= task.errors[:status].join(", ") %>
+        </div>
+      <% end %>
+    </div>
 
-    <fieldset class="content-row">
-      <div class="data-section">
-        <%= form.label :description, class: :label %>
-        <%= form.text_field :description, class: :input %>
-      </div>
-    </fieldset>
+    <div class="form-group">
+      <%= f.label :kind %>
+      <%= f.select :kind,
+          {
+            Deliverable: 'deliverable',
+            Milestone: 'milestone',
+            Approval: 'approval',
+            Post: 'post',
+            Blog: 'blog'
+          },
+          {},
+          { class: "form-control #{'is-invalid' if task.errors[:kind].any?}" } %>
+      <% if task.errors[:kind].any? %>
+        <div class="invalid-feedback">
+          <%= task.errors[:kind].join(", ") %>
+        </div>
+      <% end %>
+    </div>
 
-    <fieldset class="content-row">
-      <div class="data-section">
-        <%= form.label :status, class: :label %>
-        <%= form.select :status, {
-          "Not Started": 'not_started',
-          "In Progress": 'in_progress',
-          Complete: 'complete',
-          Abandoned: 'abandoned'
-        }, {}, class: :input %>
-      </div>
-    </fieldset>
+    <div class="form-group">
+      <%= f.label :due_on %>
+      <%= f.date_field :due_on,
+          class: "form-control #{'is-invalid' if task.errors[:due_on].any?}" %>
+      <% if task.errors[:due_on].any? %>
+        <div class="invalid-feedback">
+          <%= task.errors[:due_on].join(", ") %>
+        </div>
+      <% end %>
+    </div>
 
-    <fieldset class="content-row">
-      <div class="data-section">
-        <%= form.label :due_on, class: :label %>
-        <%= form.date_field :due_on, class: :input %>
-      </div>
-    </fieldset>
+    <div class="form-group">
+      <%= f.label :details %>
+      <%= f.rich_text_area :details,
+          class: "form-control #{'is-invalid' if task.errors[:details].any?}" %>
+      <% if task.errors[:details].any? %>
+        <div class="invalid-feedback">
+          <%= task.errors[:details].join(", ") %>
+        </div>
+      <% end %>
+    </div>
 
-    <fieldset class="content-row">
-      <div class="data-section">
-        <%= form.label :kind, class: :label %>
-        <%= form.select :kind, {
-          Deliverable: 'deliverable',
-          Milestone: 'milestone',
-          Approval: 'approval',
-          Post: 'post',
-          Blog: 'blog'
-        }, {}, class: :input %>
-      </div>
-    </fieldset>
-
-    <fieldset class="content-row">
-      <div class="data-section">
-        <%= form.label :details, class: :label %>
-        <%= form.rich_text_area :details %>
-      </div>
-    </fieldset>
-    <div>
-      <%= form.submit %>
+    <div class="form-actions">
+      <%= f.submit class: "btn btn-primary", data: { disable_with: "Saving..." } %>
+      <%= link_to "Cancel", campaign_path(campaign), class: "btn btn-secondary" %>
     </div>
   <% end %>
 </div>

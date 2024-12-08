@@ -73,6 +73,82 @@
     font-size: var(--font-size-small);
     color: var(--error-color);
   }
+
+  /* Trix Editor Styles */
+  trix-editor {
+    width: 100%;
+    min-height: 200px;
+    padding: var(--spacing-sm);
+    border: 2px solid var(--border-color);
+    border-radius: var(--border-radius);
+    font-family: inherit;
+    font-size: var(--font-size-base);
+    background-color: var(--background-color);
+    color: var(--text-color);
+    transition: border-color var(--transition-speed) var(--transition-timing),
+                box-shadow var(--transition-speed) var(--transition-timing);
+
+    &:focus {
+      border-color: var(--accent-color);
+      box-shadow: 0 0 0 3px rgba(40, 137, 137, 0.2);
+      outline: none;
+    }
+
+    &:hover:not(:focus) {
+      border-color: var(--text-color-light);
+    }
+
+    &.is-invalid {
+      border-color: var(--error-color);
+      
+      &:focus {
+        box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.25);
+      }
+    }
+  }
+
+  trix-toolbar {
+    margin-bottom: var(--spacing-sm);
+    padding: var(--spacing-sm);
+    border: none;
+    border-radius: var(--border-radius);
+    background-color: var(--primary-color);
+
+    .trix-button-group {
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: var(--border-radius);
+      margin-bottom: 0;
+
+      &:not(:first-child) {
+        margin-left: var(--spacing-xs);
+      }
+    }
+
+    .trix-button {
+      border: none;
+      background: none;
+      color: var(--background-color);
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+
+      &.trix-active {
+        background-color: var(--accent-color);
+        color: var(--background-color);
+      }
+    }
+
+    .trix-button--icon {
+      &::before {
+        filter: brightness(0) invert(1);
+      }
+    }
+
+    .trix-button-group-spacer {
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+  }
 }
 
 /* Form Layout */
