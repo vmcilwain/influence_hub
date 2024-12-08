@@ -1,15 +1,13 @@
-<tr id="<%= dom_id task %>">
-  <td>
-    <%= link_to task.due_on, [@campaign, task] %>
-  </td>
-  <td>
-    <%= task.status.titleize %>
-  </td>
-  <td>
+<div id="<%= dom_id(task) %>" class="kanban-item" data-task-id="<%= task.id %>" data-campaign-id="<%= task.campaign.id %>">
+  <%= link_to edit_campaign_task_path(task.campaign, task), 
+    class: "kanban-item",
+    data: { 
+      task_id: task.id,
+      campaign_id: task.campaign.id,
+      turbo_frame: "task-edit-modal" 
+    } do %>
     <%= task.description %>
-  </td>
-  <td>
-    <%= link_to :Edit, edit_campaign_task_path(@campaign, task) %>
-    <%= button_to :Delete, [@campaign, task], method: :delete, data: { turbo_confirm: t('form.confirmation') } %>
-  </td>
-</tr>
+  <% end %>
+</div>
+<%#= link_to :Edit, edit_campaign_task_path(@campaign, task) %>
+<%#= button_to :Delete, [@campaign, task], method: :delete, data: { turbo_confirm: t('form.confirmation') } %>

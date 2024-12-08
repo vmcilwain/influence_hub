@@ -1,0 +1,7 @@
+<%= turbo_stream.append "items_#{@task.status}" do %>
+  <%= render "tasks/task", task: @task, campaign: @campaign %>
+<% end %>
+
+<%= turbo_stream.update "task-edit-modal", "" %>
+
+<%= turbo_stream.update "flash", partial: "layouts/success", locals: { message: "Task was successfully created." } %>

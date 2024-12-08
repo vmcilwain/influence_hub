@@ -1,0 +1,8 @@
+<%= turbo_stream.update "task-edit-modal" do %>
+  <div class="modal">
+    <div class="modal-content">
+      <h2>New Task</h2>
+      <%= render "form", campaign: @campaign, task: @task %>
+    </div>
+  </div>
+<% end %>

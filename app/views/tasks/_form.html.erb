@@ -1,5 +1,5 @@
-<main class="container">
-  <%= form_with(model: [campaign, task]) do |form| %>
+<div id="<%= dom_id(task) %>_form">
+  <%= form_with(model: [campaign, task], data: { turbo: true }) do |form| %>
     <div id="flash_success" role="alert" class="flash-success"></div>
 
     <% if task.errors.any? %>
@@ -63,4 +63,4 @@
       <%= form.submit %>
     </div>
   <% end %>
-</main>
+</div>

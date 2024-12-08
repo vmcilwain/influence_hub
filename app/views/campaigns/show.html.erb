@@ -44,83 +44,43 @@
     <header class="subheader-container">
       <h2 class="subheader">Tasks</h2>
       <div class="actions">
-        <%= link_to :New, new_campaign_task_path(@campaign) %>
+        <%= link_to :New, new_campaign_task_path(@campaign), data: { turbo_frame: "task-edit-modal" } %>
       </div>
     </header>
 
     <div class="kanban-container" data-controller="kanban">
       <div class="kanban-column">
         <h3>Abandoned</h3>
-        <div class="kanban-items" data-kanban-target="items" data-status="abandoned">
+        <div class="kanban-items" data-kanban-target="items" data-status="abandoned" id="items_abandoned">
           <% @tasks.where(status: 'abandoned').each do |task| %>
-            <div id="<%= dom_id(task) %>" class="kanban-item" data-task-id="<%= task.id %>" data-campaign-id="<%= task.campaign.id %>">
-              <%= link_to edit_campaign_task_path(@campaign, task), 
-                class: "kanban-item",
-                data: { 
-                  task_id: task.id,
-                  campaign_id: task.campaign.id,
-                  turbo_frame: "task-edit-modal" 
-                } do %>
-                <%= task.description %>
-              <% end %>
-            </div>
+            <%= render "tasks/task", task: task, campaign: @campaign %>
           <% end %>
         </div>
       </div>
 
       <div class="kanban-column">
         <h3>To Do</h3>
-        <div class="kanban-items" data-kanban-target="items" data-status="not_started">
+        <div class="kanban-items" data-kanban-target="items" data-status="not_started" id="items_not_started">
           <% @tasks.where(status: 'not_started').each do |task| %>
-            <div id="<%= dom_id(task) %>" class="kanban-item" data-task-id="<%= task.id %>" data-campaign-id="<%= task.campaign.id %>">
-              <%= link_to edit_campaign_task_path(@campaign, task), 
-                class: "kanban-item",
-                data: { 
-                  task_id: task.id,
-                  campaign_id: task.campaign.id,
-                  turbo_frame: "task-edit-modal" 
-                } do %>
-                <%= task.description %>
-              <% end %>
-            </div>
+            <%= render "tasks/task", task: task, campaign: @campaign %>
           <% end %>
         </div>
       </div>
 
       <div class="kanban-column">
         <h3>In Progress</h3>
-        <div class="kanban-items" data-kanban-target="items" data-status="in_progress">
+        <div class="kanban-items" data-kanban-target="items" data-status="in_progress" id="items_in_progress">
           <% @tasks.where(status: 'in_progress').each do |task| %>
-            <div id="<%= dom_id(task) %>" class="kanban-item" data-task-id="<%= task.id %>" data-campaign-id="<%= task.campaign.id %>">
-              <%= link_to edit_campaign_task_path(@campaign, task), 
-                class: "kanban-item",
-                data: { 
-                  task_id: task.id,
-                  campaign_id: task.campaign.id,
-                  turbo_frame: "task-edit-modal" 
-                } do %>
-                <%= task.description %>
-              <% end %>
-            </div>
+            <%= render "tasks/task", task: task, campaign: @campaign %>
           <% end %>
         </div>
       </div>
 
       <div class="kanban-column">
         <h3>Done</h3>
-        <div class="kanban-items" data-kanban-target="items" data-status="complete">
+        <div class="kanban-items" data-kanban-target="items" data-status="complete" id="items_complete">
           <% @tasks.where(status: 'complete').each do |task| %>
-            <div id="<%= dom_id(task) %>" class="kanban-item" data-task-id="<%= task.id %>" data-campaign-id="<%= task.campaign.id %>">
-              <%= link_to edit_campaign_task_path(@campaign, task), 
-                class: "kanban-item",
-                data: { 
-                  task_id: task.id,
-                  campaign_id: task.campaign.id,
-                  turbo_frame: "task-edit-modal" 
-                } do %>
-                <%= task.description %>
-              <% end %>
-            </div>
+            <%= render "tasks/task", task: task, campaign: @campaign %>
           <% end %>
         </div>
       </div>

@@ -1,10 +1,14 @@
 <% content_for :title, "New task for #{@campaign.name}" %>
 
-<header class="header-container">
-  <h1 class="header">New Task for <%= @campaign.name %></h1>
-  <div class="actions">
-    <%= link_to :Campaign, @campaign %>
-  </div>
-</header>
+<%= turbo_frame_tag "task-edit-modal" do %>
+  <div class="modal" data-controller="turbo-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>New Task for <%= @campaign.name %></h2>
+        <button type="button" class="close-button" data-action="click->turbo-modal#hideModal">&times;</button>
+      </div>
 
-<%= render "form", campaign: @campaign, task: @task %>
+      <%= render "form", campaign: @campaign, task: @task %>
+    </div>
+  </div>
+<% end %>

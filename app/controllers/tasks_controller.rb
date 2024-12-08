@@ -13,6 +13,11 @@ class TasksController < ApplicationController
   # GET /tasks/new
   def new
     @task = Task.new
+
+    respond_to do |format|
+      format.html
+      format.turbo_stream
+    end
   end
 
   # GET /tasks/1/edit
@@ -29,9 +34,11 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.save
+        format.turbo_stream
         format.html { redirect_to campaign_task_url(@campaign, @task), success: 'Task was successfully created.' }
         format.json { render :show, status: :created, location: @task }
       else
+        format.turbo_stream { render turbo_stream: turbo_stream.replace("#{helpers.dom_id(@task)}_form", partial: 'form', locals: { campaign: @campaign, task: @task }) }
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @task.errors, status: :unprocessable_entity }
       end
