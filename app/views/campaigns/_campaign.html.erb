@@ -1,21 +1,37 @@
-<tr id="<%= dom_id campaign %>">
-  <td>
-    <%= link_to campaign.name, campaign %>
+<tr id="<%= dom_id campaign %>" class="table-row">
+  <td class="campaign-name">
+    <%= link_to campaign.name, campaign, class: "campaign-link" %>
   </td>
 
   <td>
-    <%= campaign.status %>
+    <span class="status-badge status-<%= campaign.status.downcase %>">
+      <%= campaign.status %>
+    </span>
   </td>
 
-  <td>
-    <%= campaign.rate %>
+  <td class="campaign-rate">
+    <%= number_to_currency(campaign.rate) %>
   </td>
 
-  <td>
-    <%= campaign.created_at %>
+  <td class="campaign-date">
+    <%= campaign.created_at.strftime("%b %d, %Y") %>
   </td>
+  
   <td class="table-actions">
-    <%= link_to "Edit", edit_campaign_path(campaign) %>
-    <%= button_to :Delete, campaign, method: :delete, data: { turbo_confirm: t('form.confirmation') } %>
+    <%= link_to edit_campaign_path(campaign), class: "button outline small", title: "Edit campaign" do %>
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="icon">
+        <path d="M11.5 2.5L13.5 4.5M12.5 1.5L8 6L7 9L10 8L14.5 3.5C14.5 3.5 12.5 1.5 12.5 1.5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="visually-hidden">Edit</span>
+    <% end %>
+
+    <%= button_to campaign, method: :delete, class: "button outline small danger", 
+        data: { turbo_confirm: t('form.confirmation') },
+        title: "Delete campaign" do %>
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="icon">
+        <path d="M2 4H14M5 4V3C5 2.44772 5.44772 2 6 2H10C10.5523 2 11 2.44772 11 3V4M12 4V13C12 13.5523 11.5523 14 11 14H5C4.44772 14 4 13.5523 4 13V4H12Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="visually-hidden">Delete</span>
+    <% end %>
   </td>
 </tr>

@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <title><%= content_for?(:title) ? yield(:title) : "InfluenceHub" %></title>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -11,13 +12,78 @@
   </head>
 
   <body>
-    <%= authentication_action %>
+    <a href="#main-content" class="skip-to-main-content">Skip to main content</a>
 
-    <%= flash_success %>
-    <%= flash_alert %>
-    <%= flash_error %>
-    <%= flash_notice %>
+    <header class="main-nav">
+      <div class="container">
+        <%= link_to "InfluenceHub", root_path, class: "brand", "aria-label": "Home" %>
+        
+        <button class="menu-toggle" aria-expanded="false" aria-controls="nav-links">
+          <span class="visually-hidden">Toggle menu</span>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
 
-    <%= yield %>
+        <nav aria-label="Main navigation">
+          <ul id="nav-links" class="nav-links">
+            <li><%= link_to "Home", root_path, class: current_page?(root_path) ? "active" : "" %></li>
+            <% if user_signed_in? %>
+              <li><%= link_to "Account", edit_user_registration_path, class: current_page?(edit_user_registration_path) ? "active" : "" %></li>
+              <li><%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "button", form_class: "inline-form" %></li>
+            <% else %>
+              <li><%= link_to "Sign in", new_user_session_path, class: current_page?(new_user_session_path) ? "active" : "" %></li>
+            <% end %>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main-content" class="container">
+      <% if notice %>
+        <div class="flash flash-notice" role="alert">
+          <%= notice %>
+        </div>
+      <% end %>
+      
+      <% if alert %>
+        <div class="flash flash-alert" role="alert">
+          <%= alert %>
+        </div>
+      <% end %>
+
+      <% if flash[:error] %>
+        <div class="flash flash-error" role="alert">
+          <%= flash[:error] %>
+        </div>
+      <% end %>
+
+      <% if flash[:success] %>
+        <div class="flash flash-success" role="alert">
+          <%= flash[:success] %>
+        </div>
+      <% end %>
+
+      <%= yield %>
+    </main>
+
+    <%= turbo_frame_tag "modal" %>
+
+    <script>
+      document.addEventListener('turbo:load', () => {
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        if (menuToggle && navLinks) {
+          menuToggle.addEventListener('click', () => {
+            const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+            menuToggle.setAttribute('aria-expanded', !isExpanded);
+            navLinks.classList.toggle('show');
+          });
+        }
+      });
+    </script>
   </body>
 </html>

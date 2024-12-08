@@ -1,0 +1,32 @@
+/* Utility Classes */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.inline-form {
+  display: inline;
+}
+
+/* Focus Visible */
+:focus-visible {
+  outline: 3px solid var(--accent-color);
+  outline-offset: 2px;
+}
+
+/* High Contrast Mode */
+@media (forced-colors: active) {
+  .form-control {
+    border: 2px solid ButtonText;
+  }
+
+  .btn {
+    border: 2px solid ButtonText;
+  }
+}

@@ -1,0 +1,136 @@
+/* Table Styles */
+.table-responsive {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-bottom: var(--spacing-xl);
+
+  th, td {
+    padding: var(--spacing-md);
+    text-align: left;
+    vertical-align: middle;
+  }
+
+  th {
+    color: var(--text-color);
+    font-weight: 600;
+    border-bottom: 2px solid var(--border-color);
+    white-space: nowrap;
+
+    &:last-child {
+      text-align: right;
+    }
+  }
+
+  td {
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  tbody tr {
+    transition: background-color var(--transition-speed) var(--transition-timing);
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.02);
+    }
+  }
+}
+
+.table-actions-header {
+  text-align: right;
+  min-width: 200px;
+
+  .button {
+    font-size: var(--font-size-small);
+    padding: var(--spacing-xs) var(--spacing-md);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    background-color: var(--accent-color);
+    border: none;
+    
+    &:hover {
+      background-color: var(--primary-color);
+      transform: translateY(-1px);
+    }
+
+    .icon {
+      width: 16px;
+      height: 16px;
+    }
+  }
+}
+
+.table-actions {
+  display: flex;
+  gap: var(--spacing-sm);
+  justify-content: flex-end;
+
+  .button {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    
+    &.small {
+      font-size: var(--font-size-small);
+    }
+
+    .icon {
+      width: 16px;
+      height: 16px;
+    }
+  }
+}
+
+/* Status Badge */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  border-radius: 2rem;
+  font-size: var(--font-size-small);
+  font-weight: 500;
+  line-height: 1.4;
+  white-space: nowrap;
+
+  &.status-active {
+    background-color: rgba(40, 167, 69, 0.1);
+    color: var(--success-color);
+  }
+
+  &.status-pending {
+    background-color: rgba(255, 193, 7, 0.1);
+    color: var(--warning-color);
+  }
+
+  &.status-completed {
+    background-color: rgba(23, 162, 184, 0.1);
+    color: #17a2b8;
+  }
+
+  &.status-cancelled {
+    background-color: rgba(220, 53, 69, 0.1);
+    color: var(--error-color);
+  }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .table {
+    th, td {
+      padding: var(--spacing-sm);
+    }
+  }
+
+  .table-actions {
+    .button {
+      padding: var(--spacing-xs);
+      
+      .icon {
+        margin: 0;
+      }
+    }
+  }
+}

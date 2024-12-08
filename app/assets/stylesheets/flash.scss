@@ -1,0 +1,66 @@
+/* Flash Messages */
+.flash {
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius);
+  margin-bottom: var(--spacing-md);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &-notice {
+    background-color: var(--accent-color);
+    color: var(--background-color);
+  }
+
+  &-alert {
+    background-color: var(--warning-color);
+    color: var(--text-color);
+  }
+
+  &-error {
+    background-color: var(--error-color);
+    color: var(--background-color);
+  }
+
+  &-success {
+    background-color: var(--success-color);
+    color: var(--background-color);
+  }
+
+  .close-button {
+    background: none;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    padding: var(--spacing-xs);
+    margin-left: var(--spacing-md);
+    opacity: 0.8;
+    transition: opacity var(--transition-speed) var(--transition-timing);
+
+    &:hover {
+      opacity: 1;
+    }
+
+    .icon {
+      width: 16px;
+      height: 16px;
+    }
+  }
+}
+
+/* Flash Message Animation */
+@keyframes slideIn {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.flash {
+  animation: slideIn 0.3s ease-out;
+}

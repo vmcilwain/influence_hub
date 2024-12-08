@@ -1,25 +1,29 @@
 <% content_for :title, "Campaigns" %>
 
-<header class="header-container">
-  <h1 class="header">Campaigns</h1>
-  <div class="actions">
-    <%= link_to "New", new_campaign_path %>
-  </div>
-</header>
+<div class="page-header">
+  <h1>Campaigns</h1>
+</div>
 
-<main class="container">
-  <p style="color: green"><%= notice %></p>
-
-  <table id="campaigns">
+<div class="table-responsive">
+  <table class="table" id="campaigns">
     <thead>
-      <th>Name</th>
-      <th>Status</th>
-      <th>Rate</th>
-      <th>Created On</th>
-      <th></th>
+      <tr>
+        <th>Name</th>
+        <th>Status</th>
+        <th>Rate</th>
+        <th>Created On</th>
+        <th class="table-actions-header">
+          <%= link_to new_campaign_path, class: "button small" do %>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="icon">
+              <path d="M8 4V12M4 8H12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            New Campaign
+          <% end %>
+        </th>
+      </tr>
     </thead>
     <tbody>
       <%= render @campaigns %>
     </tbody>
   </table>
-</main>
+</div>

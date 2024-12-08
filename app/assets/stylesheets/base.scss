@@ -1,0 +1,64 @@
+/* Reset and base styles */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family);
+  line-height: var(--line-height);
+  color: var(--text-color);
+  background-color: var(--page-background);
+  min-height: 100vh;
+}
+
+/* Accessibility */
+:focus {
+  outline: 3px solid var(--accent-color);
+  outline-offset: 2px;
+}
+
+.skip-to-main-content {
+  position: absolute;
+  left: -9999px;
+  z-index: var(--z-index-header);
+  padding: var(--spacing-md);
+  background-color: var(--background-color);
+  color: var(--text-color);
+  text-decoration: none;
+
+  &:focus {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+/* Main content */
+main {
+  padding: var(--spacing-xl) 0;
+}
+
+/* Page Header */
+.page-header {
+  margin-bottom: var(--spacing-lg);
+  padding-bottom: var(--spacing-md);
+  border-bottom: 1px solid var(--border-color);
+
+  h1 {
+    font-size: var(--font-size-large);
+    color: var(--text-color);
+    margin: 0;
+  }
+}
+
+/* Icon Styles */
+.icon {
+  display: inline-block;
+  vertical-align: middle;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}

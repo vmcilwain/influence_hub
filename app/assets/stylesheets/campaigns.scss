@@ -1,0 +1,54 @@
+/* Campaign Specific Styles */
+.campaign-link {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 500;
+  
+  &:hover {
+    color: var(--accent-color);
+    text-decoration: underline;
+  }
+}
+
+.campaign-rate {
+  font-family: var(--font-family-mono, monospace);
+  white-space: nowrap;
+}
+
+.campaign-date {
+  color: var(--text-color-light);
+  white-space: nowrap;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
+}
+
+/* Campaign Form */
+.campaign-form-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+}
+
+.campaign-form {
+  .form-row {
+    display: flex;
+    gap: var(--spacing-md);
+    flex-wrap: wrap;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+    }
+  }
+
+  .half-width {
+    flex: 1 1 calc(50% - var(--spacing-md));
+    min-width: 250px;
+
+    @media (max-width: 768px) {
+      width: 100%;
+    }
+  }
+}
