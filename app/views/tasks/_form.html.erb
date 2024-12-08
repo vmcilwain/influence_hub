@@ -1,7 +1,9 @@
 <main class="container">
   <%= form_with(model: [campaign, task]) do |form| %>
+    <div id="flash_success" role="alert" class="flash-success"></div>
+
     <% if task.errors.any? %>
-      <div style="color: red">
+      <div id="error_message" style="color: red">
         <h2><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h2>
 
         <ul>

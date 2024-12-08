@@ -42,7 +42,7 @@ class TasksController < ApplicationController
   def update
     respond_to do |format|
       if @task.update(task_params)
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(@task, partial: 'tasks/task', locals: { campaign: @campaign, task: @task }) }
+        format.turbo_stream
         format.html { redirect_to campaign_task_url(@campaign, @task), success: 'Task was successfully updated.' }
         format.json { render :show, status: :ok, location: @task }
       else

@@ -1,0 +1,13 @@
+<%= turbo_stream.replace @task do %>
+  <%= render @task %>
+<% end %>
+
+<%= turbo_stream.update "flash_success" do %>
+  <div id="flash_success" role="alert" class="flash-success">
+    Task was successfully updated.
+  </div>
+<% end %>
+
+<%= turbo_stream.update "error_message" do %>
+  <div id="error_explanation"></div>
+<% end %>
