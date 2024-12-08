@@ -1,15 +1,17 @@
-<%= turbo_frame_tag "task-edit-modal", data: { controller: "turbo-modal" } do %>
-  <div class="turbo-frame-overlay"></div>
+<%= turbo_frame_tag "task-edit-modal" do %>
+  <dialog data-controller="turbo-modal" class="modal">
+    <div class="turbo-frame-overlay"></div>
 
-  <% content_for :title, "New task for #{@campaign.name}" %>
-  
-  <%= link_to "×", "#", 
-        class: "modal-close", 
-        data: { action: "click->turbo-modal#hideModal" } %>
-  
-  <header class="header-container">
-    <h1 class="header">New Task for <%= @campaign.name %></h1>
-  </header>
+    <% content_for :title, "New task for #{@campaign.name}" %>
+    
+    <%= link_to "×", "#", 
+          class: "modal-close", 
+          data: { action: "click->turbo-modal#hideModal" } %>
+    
+    <header class="header-container">
+      <h1 class="header">New Task for <%= @campaign.name %></h1>
+    </header>
 
-  <%= render "form", campaign: @campaign, task: @task %>
+    <%= render "form", campaign: @campaign, task: @task %>
+  </dialog>
 <% end %>

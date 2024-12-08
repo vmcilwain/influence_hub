@@ -101,7 +101,10 @@ table {
   }
 }
 
-
+// Hide turbo frame content when dialog is open
+turbo-frame:has(dialog[open]) {
+  visibility: hidden;
+}
 
 // .actions {
 //   margin-top: 20px;
