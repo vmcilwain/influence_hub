@@ -73,9 +73,11 @@
     <div class="form-group">
       <%= f.label :details %>
       <%= f.rich_text_area :details,
-          class: "form-control #{'is-invalid' if task.errors[:details].any?}" %>
+          class: "form-control #{'is-invalid' if task.errors[:details].any?}",
+          aria: { describedby: "details-hint details-error" } %>
+      <span id="details-hint" class="hint-text">Add any additional details, formatting, or attachments for this task</span>
       <% if task.errors[:details].any? %>
-        <div class="invalid-feedback">
+        <div id="details-error" class="invalid-feedback">
           <%= task.errors[:details].join(", ") %>
         </div>
       <% end %>

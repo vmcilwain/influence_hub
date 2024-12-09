@@ -4,6 +4,9 @@
 @import "layout";
 @import "utilities";
 
+// Trix styles
+@import "trix/dist/trix";
+
 // Components
 @import "buttons";
 @import "forms";
@@ -11,6 +14,7 @@
 @import "modals";
 @import "navigation";
 @import "flash";
+@import "actiontext";
 
 // Features
 @import "campaigns";

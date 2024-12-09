@@ -1,0 +1,287 @@
+// Override Trix default styles with more specific selectors
+.trix-content {
+  font-family: var(--font-family);
+  color: var(--text-color);
+  line-height: var(--line-height);
+  padding: var(--spacing-sm);
+}
+
+// Force override Trix toolbar styles
+div.trix-toolbar {
+  padding: var(--spacing-sm) !important;
+  background: var(--background-color) !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: var(--border-radius) !important;
+  margin-bottom: var(--spacing-xs) !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05) !important;
+
+  .trix-button-row {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: var(--spacing-sm) !important;
+    padding: 2px !important;
+    justify-content: flex-start !important;
+    margin: 0 !important;
+  }
+
+  .trix-button-group {
+    display: inline-flex !important;
+    background: var(--background-color) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: var(--border-radius) !important;
+    margin: 0 !important;
+    overflow: hidden !important;
+
+    &:not(:last-child) {
+      margin-right: var(--spacing-xs) !important;
+    }
+  }
+
+  .trix-button {
+    width: 2.5rem !important;
+    height: 2.5rem !important;
+    padding: 0.5rem !important;
+    margin: 0 !important;
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    color: var(--text-color) !important;
+    opacity: 0.7 !important;
+    transition: all 0.2s ease !important;
+
+    &:not(:last-child) {
+      border-right: 1px solid var(--border-color) !important;
+    }
+
+    &:hover:not(:disabled) {
+      background-color: var(--page-background) !important;
+      opacity: 1 !important;
+    }
+
+    &.trix-active {
+      background-color: var(--primary-color) !important;
+      color: white !important;
+      opacity: 1 !important;
+    }
+
+    &:disabled {
+      opacity: 0.3 !important;
+      cursor: not-allowed !important;
+    }
+  }
+
+  // Dialog styling
+  .trix-dialog {
+    border: none !important;
+    border-radius: var(--border-radius) !important;
+    background: var(--background-color) !important;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+    padding: var(--spacing-md) !important;
+    min-width: 300px !important;
+
+    input.trix-input.trix-input--dialog {
+      display: block !important;
+      width: 100% !important;
+      padding: 0.75rem 1rem !important;
+      margin-bottom: var(--spacing-sm) !important;
+      font-size: var(--font-size-base) !important;
+      line-height: 1.5 !important;
+      color: var(--text-color) !important;
+      background-color: var(--background-color) !important;
+      border: 1px solid var(--border-color) !important;
+      border-radius: var(--border-radius) !important;
+      transition: all 0.2s ease !important;
+
+      &:focus {
+        outline: none !important;
+        border-color: var(--primary-color) !important;
+        box-shadow: 0 0 0 3px rgba(38, 11, 11, 0.1) !important;
+      }
+    }
+
+    .trix-button.trix-button--dialog {
+      padding: 0.75rem 1rem !important;
+      margin-right: var(--spacing-sm) !important;
+      background: var(--primary-color) !important;
+      color: white !important;
+      border: none !important;
+      border-radius: var(--border-radius) !important;
+      font-size: var(--font-size-base) !important;
+      font-weight: 500 !important;
+      opacity: 1 !important;
+      width: auto !important;
+      height: auto !important;
+
+      &:hover {
+        background: var(--primary-color-dark, #1a0808) !important;
+      }
+
+      &.trix-button--dialog-cancel {
+        background: var(--text-color-light) !important;
+
+        &:hover {
+          background: var(--text-color) !important;
+        }
+      }
+    }
+  }
+}
+
+// Content styling with specific selectors
+trix-editor {
+  blockquote {
+    border-left: 4px solid var(--primary-color) !important;
+    margin: 1.5em 0 !important;
+    padding: var(--spacing-md) var(--spacing-lg) !important;
+    background-color: rgba(var(--primary-color-rgb), 0.05) !important;
+    color: var(--text-color) !important;
+    font-style: italic !important;
+    border-radius: 0 var(--border-radius) var(--border-radius) 0 !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05) !important;
+    font-size: 1.1em !important;
+    line-height: 1.6 !important;
+    position: relative !important;
+    display: block !important;
+
+    &::before {
+      content: '"' !important;
+      position: absolute !important;
+      left: var(--spacing-sm) !important;
+      top: 0 !important;
+      font-size: 2em !important;
+      color: var(--primary-color) !important;
+      opacity: 0.2 !important;
+      font-family: Georgia, serif !important;
+    }
+  }
+
+  // Add list styles to the editor
+  ul, ol {
+    padding-left: 2.5em !important;
+    margin: 1em 0 !important;
+
+    li {
+      margin-bottom: 0.5em !important;
+      padding-left: 0.5em !important;
+    }
+  }
+
+  ul > li {
+    list-style-type: disc !important;
+  }
+
+  ol > li {
+    list-style-type: decimal !important;
+  }
+
+  ul ul,
+  ol ol,
+  ul ol,
+  ol ul {
+    margin: 0.5em 0 !important;
+  }
+}
+
+// Additional content styling
+div.trix-content {
+  ul, ol {
+    padding-left: 2.5em !important;
+    margin: 1em 0 !important;
+
+    li {
+      margin-bottom: 0.5em !important;
+      padding-left: 0.5em !important;
+    }
+  }
+
+  ul > li {
+    list-style-type: disc !important;
+  }
+
+  ol > li {
+    list-style-type: decimal !important;
+  }
+
+  ul ul,
+  ol ol,
+  ul ol,
+  ol ul {
+    margin: 0.5em 0 !important;
+  }
+
+  .level-0 { margin-left: 0 !important; }
+  
+  .level-1 { 
+    margin-left: 2em !important;
+    border-left: 2px solid var(--border-color) !important;
+    padding-left: 1em !important;
+  }
+  
+  .level-2 { 
+    margin-left: 4em !important;
+    border-left: 2px solid var(--primary-color) !important;
+    padding-left: 1em !important;
+  }
+  
+  .level-3 { 
+    margin-left: 6em !important;
+    border-left: 2px solid var(--text-color-light) !important;
+    padding-left: 1em !important;
+  }
+
+  .attachment-gallery {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: var(--spacing-sm) !important;
+
+    > action-text-attachment,
+    > .attachment {
+      flex: 1 0 33% !important;
+      padding: 0 0.5em !important;
+      max-width: 33% !important;
+    }
+
+    &.attachment-gallery--2,
+    &.attachment-gallery--4 {
+      > action-text-attachment,
+      > .attachment {
+        flex-basis: 50% !important;
+        max-width: 50% !important;
+      }
+    }
+  }
+
+  action-text-attachment .attachment {
+    padding: 0 !important;
+    max-width: 100% !important;
+  }
+}
+
+// Ensure quote styles are applied to both editor and display
+trix-editor, .trix-content {
+  blockquote {
+    border-left: 4px solid var(--primary-color) !important;
+    margin: 1.5em 0 !important;
+    padding: var(--spacing-md) var(--spacing-lg) !important;
+    background-color: rgba(var(--primary-color-rgb), 0.05) !important;
+    color: var(--text-color) !important;
+    font-style: italic !important;
+    border-radius: 0 var(--border-radius) var(--border-radius) 0 !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05) !important;
+    font-size: 1.1em !important;
+    line-height: 1.6 !important;
+    position: relative !important;
+    display: block !important;
+
+    &::before {
+      content: '"' !important;
+      position: absolute !important;
+      left: var(--spacing-sm) !important;
+      top: 0 !important;
+      font-size: 2em !important;
+      color: var(--primary-color) !important;
+      opacity: 0.2 !important;
+      font-family: Georgia, serif !important;
+    }
+  }
+}
