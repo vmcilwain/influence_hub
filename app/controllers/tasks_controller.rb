@@ -53,6 +53,7 @@ class TasksController < ApplicationController
         format.html { redirect_to campaign_task_url(@campaign, @task), success: 'Task was successfully updated.' }
         format.json { render :show, status: :ok, location: @task }
       else
+        format.turbo_stream { render turbo_stream: turbo_stream.replace("#{helpers.dom_id(@task)}_form", partial: 'form', locals: { campaign: @campaign, task: @task }) }
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @task.errors, status: :unprocessable_entity }
       end
@@ -87,19 +88,19 @@ class TasksController < ApplicationController
   private
 
   def set_campaign
-    @campaign = current_user.campaigns.find(params.expect(:campaign_id))
+    @campaign = current_user.campaigns.find(params[:campaign_id])
   end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_task
-    @task = @campaign.tasks.find(params.expect(:id))
+    @task = @campaign.tasks.find(params[:id])
   end
 
   # Only allow a list of trusted parameters through.
   def task_params
-    params.expect(task: %i[description status due_on kind rate engagement_rate reach clicks details]).tap do |task|
-      task[:user] = current_user
-      task[:campaign] = @campaign
+    params.require(:task).permit(:description, :status, :due_on, :kind, :rate, :engagement_rate, :reach, :clicks, :details).tap do |whitelisted|
+      whitelisted[:user] = current_user
+      whitelisted[:campaign] = @campaign
     end
   end
 end

@@ -1,7 +1,27 @@
-<%= turbo_stream.append "items_#{@task.status}" do %>
-  <%= render "tasks/task", task: @task, campaign: @campaign %>
+<%# Update the tasks list with the new task %>
+<%= turbo_stream.append "tasks" do %>
+  <%= render @task %>
 <% end %>
 
-<%= turbo_stream.update "task-edit-modal", "" %>
+<%# Keep the modal open and show success message %>
+<%= turbo_stream.update "task-edit-modal" do %>
+  <dialog data-controller="turbo-modal" class="modal">
+    <div class="turbo-frame-overlay"></div>
+    
+    <%= link_to "×", "#", 
+          class: "modal-close", 
+          data: { action: "click->turbo-modal#hideModal" } %>
+    
+    <header class="header-container">
+      <h1 class="header">Edit Task for <%= @campaign.name %></h1>
+    </header>
 
-<%= turbo_stream.update "flash", partial: "layouts/success", locals: { message: "Task was successfully created." } %>
+    <div class="flash flash-success" role="alert">
+      Task was successfully created.
+    </div>
+
+    <%= turbo_frame_tag "#{dom_id(@task)}_form" do %>
+      <%= render "form", campaign: @campaign, task: @task %>
+    <% end %>
+  </dialog>
+<% end %>
