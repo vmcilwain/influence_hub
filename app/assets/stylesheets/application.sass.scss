@@ -1,11 +1,15 @@
-// Base
+// Base styles
 @import "variables";
 @import "base";
 @import "layout";
 @import "utilities";
 
-// Trix styles
-@import "trix/dist/trix";
+// Third-party styles (load before our custom overrides)
+@import "trix/dist/trix.css";
+
+// Features
+@import "campaigns";
+@import "kanban";
 
 // Components
 @import "buttons";
@@ -15,7 +19,3 @@
 @import "navigation";
 @import "flash";
 @import "actiontext";
-
-// Features
-@import "campaigns";
-@import "kanban";
