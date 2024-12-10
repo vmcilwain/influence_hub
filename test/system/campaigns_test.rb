@@ -17,8 +17,8 @@ class CampaignsTest < BaseSystemTestCase
 
       visit new_campaign_url
   
-      fill_in 'Name', with: 'New Campaign'
-      fill_in 'Rate', with: 10
+      fill_in :campaign_name, with: 'New Campaign'
+      fill_in :campaign_rate, with: 10
       
       click_on 'Create Campaign'
   
@@ -29,24 +29,28 @@ class CampaignsTest < BaseSystemTestCase
       sign_in @user
 
       visit new_campaign_url
-  
-      fill_in 'Rate', with: 10
+
+      assert_no_selector '#name-error'
+
+      fill_in :campaign_rate, with: 10
       
       click_on 'Create Campaign'
   
-      assert_text "Name can't be blank"
+      assert_selector '#name-error', text: "can't be blank"
     end
 
     should 'should not create campaign if rate is empty' do
       sign_in @user
 
       visit new_campaign_url
-  
-      fill_in 'Name', with: 'New Campaign'
+
+      assert_no_selector '#rate-error'
+      
+      fill_in :campaign_name, with: 'New Campaign'
       
       click_on 'Create Campaign'
   
-      assert_text 'Rate is not a number'
+      assert_selector '#rate-error', text: "can't be blank"
     end
   end
 
@@ -71,11 +75,13 @@ class CampaignsTest < BaseSystemTestCase
       sign_in @user
       
       visit edit_campaign_url(campaign)
+      
+      assert_no_selector '#name-error'
 
       fill_in :campaign_name, with: ''
       click_on 'Update Campaign'
 
-      assert_text "Name can't be blank"
+      assert_selector '#name-error', text: "can't be blank"
     end
 
     should 'should not update Campaign if rate is empty' do
@@ -83,11 +89,13 @@ class CampaignsTest < BaseSystemTestCase
       sign_in @user
       
       visit edit_campaign_url(campaign)
+      
+      assert_no_selector '#rate-error'
 
       fill_in :campaign_rate, with: ''
       click_on 'Update Campaign'
 
-      assert_text 'Rate is not a number'
+      assert_selector '#rate-error', text: "can't be blank"
     end
   end
 

@@ -25,7 +25,7 @@
           rows: 3,
           placeholder: "Describe your campaign objectives" %>
       <% if campaign.errors[:description].any? %>
-        <div class="invalid-feedback">
+        <div id="description-error" class="invalid-feedback">
           <%= campaign.errors[:description].join(", ") %>
         </div>
       <% end %>
@@ -38,7 +38,7 @@
           {},
           { class: "form-control #{'is-invalid' if campaign.errors[:status].any?}" } %>
       <% if campaign.errors[:status].any? %>
-        <div class="invalid-feedback">
+        <div id="status-error" class="invalid-feedback">
           <%= campaign.errors[:status].join(", ") %>
         </div>
       <% end %>
@@ -54,7 +54,7 @@
             class: "form-control #{'is-invalid' if campaign.errors[:rate].any?}",
             placeholder: "0.00" %>
         <% if campaign.errors[:rate].any? %>
-          <div class="invalid-feedback">
+          <div id="rate-error" class="invalid-feedback">
             <%= campaign.errors[:rate].join(", ") %>
           </div>
         <% end %>
@@ -69,7 +69,7 @@
             class: "form-control #{'is-invalid' if campaign.errors[:engagement_rate].any?}",
             placeholder: "0.00" %>
         <% if campaign.errors[:engagement_rate].any? %>
-          <div class="invalid-feedback">
+          <div id="engagement-error" class="invalid-feedback">
             <%= campaign.errors[:engagement_rate].join(", ") %>
           </div>
         <% end %>
@@ -85,7 +85,7 @@
             class: "form-control #{'is-invalid' if campaign.errors[:reach].any?}",
             placeholder: "0" %>
         <% if campaign.errors[:reach].any? %>
-          <div class="invalid-feedback">
+          <div id="reach-error" class="invalid-feedback">
             <%= campaign.errors[:reach].join(", ") %>
           </div>
         <% end %>
@@ -99,7 +99,7 @@
             class: "form-control #{'is-invalid' if campaign.errors[:clicks].any?}",
             placeholder: "0" %>
         <% if campaign.errors[:clicks].any? %>
-          <div class="invalid-feedback">
+          <div id="clicks-error" class="invalid-feedback">
             <%= campaign.errors[:clicks].join(", ") %>
           </div>
         <% end %>
