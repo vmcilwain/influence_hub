@@ -4,7 +4,7 @@ class CampaignTest < ActiveSupport::TestCase
   context 'associations' do
     should belong_to(:user)
     should have_many(:tasks).dependent(:destroy)
-    should have_one(:organization)
+    should have_many(:organizations).through(:promotions).dependent(:destroy)
   end
 
   context 'validations' do

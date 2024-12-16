@@ -2,7 +2,8 @@ class Campaign < ApplicationRecord
   belongs_to :user
 
   has_many :tasks, dependent: :destroy
-  has_one :organization
+  has_many :promotions, dependent: :destroy
+  has_many :organizations, through: :promotions, dependent: :destroy
   
   validates :name, presence: true
   validates :rate, presence: true, numericality: { greater_than_or_equal_to: 0 }

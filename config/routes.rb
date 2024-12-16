@@ -8,6 +8,8 @@ Rails.application.routes.draw do
       patch :update_status, on: :member
     end
   end
+
+  resources :organizations
   
   if Rails.env.development?
     get 'prototypes' => 'prototypes#index'

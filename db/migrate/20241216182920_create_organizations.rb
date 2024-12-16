@@ -1,7 +1,6 @@
 class CreateOrganizations < ActiveRecord::Migration[8.0]
   def change
     create_table :organizations do |t|
-      t.references :campaign, null: false, foreign_key: true 
       t.references :user, null: false, foreign_key: true
       t.string :name, null: false, default: ''
       t.string :address

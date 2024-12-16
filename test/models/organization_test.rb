@@ -3,8 +3,8 @@ require 'test_helper'
 class OrganizationTest < ActiveSupport::TestCase
   context 'associations' do
     should belong_to(:user)
-    should belong_to(:campaign)
-    should have_many(:tasks).through(:campaign)
+    should have_many(:campaigns).through(:promotions).dependent(:destroy)
+    should have_many(:tasks).through(:campaigns)
   end
   
   context 'validations' do

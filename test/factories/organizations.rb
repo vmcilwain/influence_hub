@@ -1,8 +1,10 @@
 FactoryBot.define do
   factory :organization do
-    campaign
     user
     name { Faker::Company.name }
-    status { :enabled }
+  end
+
+  factory :inactive_organization, parent: :organization do
+    status { :inactive }
   end
 end
