@@ -9,5 +9,6 @@ class UserTest < ActiveSupport::TestCase
   context 'associations' do
     should have_many(:campaigns).dependent(:destroy)
     should have_many(:tasks).through(:campaigns).dependent(:destroy)
+    should have_many(:organizations).dependent(:destroy)
   end
 end
