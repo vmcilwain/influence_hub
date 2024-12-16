@@ -3,7 +3,7 @@ class Organization < ApplicationRecord
   
   has_many :promotions, dependent: :destroy
   has_many :campaigns, through: :promotions, dependent: :destroy
-  
+  has_many :contacts
   has_many :tasks, through: :campaigns
   
   validates :name, :status, presence: true
