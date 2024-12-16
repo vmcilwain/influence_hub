@@ -17,6 +17,19 @@ user = User.create!(
   confirmed_at: Time.zone.now
 )
 
+org = user.organizations.create!(
+  name: 'Acme, Inc.'
+)
+
+3.times do
+  org.contacts.create!(
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name,
+    email: Faker::Internet.email,
+    phone: Faker::PhoneNumber.phone_number
+  )
+end 
+
 Campaign.create!(
   user: user,
   name: 'Instagram Campaign',
