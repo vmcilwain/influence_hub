@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :campaigns, dependent: :destroy
   has_many :tasks, through: :campaigns, dependent: :destroy
   has_many :organizations, dependent: :destroy
+  has_many :contacts, through: :organizations
   
   validates :first_name, :last_name, presence: true
 end
