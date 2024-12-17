@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   devise_for :users
   
   resources :campaigns do
+    resources :expenses
     resources :tasks do
       patch :update_status, on: :member
     end

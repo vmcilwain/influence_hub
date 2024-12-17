@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :expense do
-    list_item
+    category { 'test category' }
     amount { 100.00 }
     campaign
     sequence(:name) { |n| "Expense #{n}" }
