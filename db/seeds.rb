@@ -30,7 +30,7 @@ org = user.organizations.create!(
   )
 end 
 
-Campaign.create!(
+campaign = Campaign.create!(
   user: user,
   name: 'Instagram Campaign',
   rate: 1.5 
@@ -48,4 +48,31 @@ Campaign.create!(
       kind: %i[deliverable milestone approval post blog].sample
     )
   end
+end
+
+list = List.first_or_create!(name: 'Expenses')
+
+expense_list_items = [
+  'Travel',
+  'Meals',
+  'Office Supplies',
+  'Software',
+  'Hardware',
+  'Professional Services',
+  'Training',
+  'Marketing',
+  'Miscellaneous'
+]
+
+expense_list_items.each do |list_item|
+  list.list_items.create!(name: list_item, val: list_item)
+
+  Expense.create!(
+    name: Faker::Lorem.sentence,
+    category: list_item,
+    amount: Faker::Number.decimal(l_digits: 2),
+    purchased_on: Time.zone.now,
+    campaign: campaign,
+    user: user
+  )
 end

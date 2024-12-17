@@ -5,6 +5,7 @@ class CampaignTest < ActiveSupport::TestCase
     should belong_to(:user)
     should have_many(:tasks).dependent(:destroy)
     should have_many(:organizations).through(:promotions).dependent(:destroy)
+    should have_many(:expenses).dependent(:destroy)
   end
 
   context 'validations' do

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_12_16_230730) do
+ActiveRecord::Schema[8.0].define(version: 2024_12_17_003413) do
   create_table "action_text_rich_texts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.text "body", size: :long
@@ -75,16 +75,39 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_16_230730) do
     t.index ["organization_id"], name: "index_contacts_on_organization_id"
   end
 
+  create_table "expenses", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name", default: "", null: false
+    t.string "category", default: "", null: false
+    t.decimal "amount", precision: 10, scale: 2, default: "0.0", null: false
+    t.boolean "billable", default: false, null: false
+    t.date "purchased_on"
+    t.bigint "campaign_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["billable"], name: "index_expenses_on_billable"
+    t.index ["campaign_id"], name: "index_expenses_on_campaign_id"
+    t.index ["purchased_on"], name: "index_expenses_on_purchased_on"
+    t.index ["user_id"], name: "index_expenses_on_user_id"
+  end
+
+  create_table "list_items", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "list_id", null: false
+    t.string "name", default: "", null: false
+    t.string "val", default: "", null: false
+    t.boolean "enabled", default: true, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["list_id"], name: "index_list_items_on_list_id"
+  end
+
   create_table "lists", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", default: "", null: false
-    t.string "title", default: "", null: false
-    t.string "val", default: "", null: false
+    t.string "description"
     t.boolean "enabled", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["name", "title", "val"], name: "index_lists_on_name_and_title_and_val", unique: true
-    t.index ["name", "title"], name: "index_lists_on_name_and_title", unique: true
-    t.index ["title", "val"], name: "index_lists_on_title_and_val", unique: true
+    t.index ["name"], name: "index_lists_on_name", unique: true
   end
 
   create_table "organizations", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -147,6 +170,9 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_16_230730) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "campaigns", "users"
   add_foreign_key "contacts", "organizations"
+  add_foreign_key "expenses", "campaigns"
+  add_foreign_key "expenses", "users"
+  add_foreign_key "list_items", "lists"
   add_foreign_key "organizations", "users"
   add_foreign_key "promotions", "campaigns"
   add_foreign_key "promotions", "organizations"

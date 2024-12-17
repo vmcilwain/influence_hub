@@ -11,5 +11,6 @@ class UserTest < ActiveSupport::TestCase
     should have_many(:tasks).through(:campaigns).dependent(:destroy)
     should have_many(:organizations).dependent(:destroy)
     have_many(:contacts).through(:organizations)
+    have_many(:expenses).dependent(:destroy)
   end
 end
