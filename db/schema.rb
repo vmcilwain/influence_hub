@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_12_16_201925) do
+ActiveRecord::Schema[8.0].define(version: 2024_12_16_230730) do
   create_table "action_text_rich_texts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.text "body", size: :long
@@ -73,6 +73,18 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_16_201925) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["organization_id"], name: "index_contacts_on_organization_id"
+  end
+
+  create_table "lists", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name", default: "", null: false
+    t.string "title", default: "", null: false
+    t.string "val", default: "", null: false
+    t.boolean "enabled", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name", "title", "val"], name: "index_lists_on_name_and_title_and_val", unique: true
+    t.index ["name", "title"], name: "index_lists_on_name_and_title", unique: true
+    t.index ["title", "val"], name: "index_lists_on_title_and_val", unique: true
   end
 
   create_table "organizations", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
