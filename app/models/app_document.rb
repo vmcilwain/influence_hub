@@ -3,6 +3,9 @@ class AppDocument < ApplicationRecord
   
   belongs_to :user
 
+  has_many :signatures, dependent: :destroy
+  has_many :campaigns, through: :signatures, dependent: :destroy
+  
   validates :name, :content, presence: true
   validates :status, inclusion: { in: %w[draft published] }
 

@@ -5,6 +5,8 @@ class Campaign < ApplicationRecord
   has_many :promotions, dependent: :destroy
   has_many :organizations, through: :promotions, dependent: :destroy
   has_many :expenses, dependent: :destroy
+  has_many :signatures, dependent: :destroy
+  has_many :documents, through: :signatures, dependent: :destroy
   
   validates :name, presence: true
   validates :rate, presence: true, numericality: { greater_than_or_equal_to: 0 }

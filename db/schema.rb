@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_12_18_015514) do
+ActiveRecord::Schema[8.0].define(version: 2024_12_18_201724) do
   create_table "action_text_rich_texts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.text "body", size: :long
@@ -144,6 +144,15 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_18_015514) do
     t.index ["organization_id"], name: "index_promotions_on_organization_id"
   end
 
+  create_table "signatures", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "app_document_id", null: false
+    t.bigint "campaign_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["app_document_id"], name: "index_signatures_on_app_document_id"
+    t.index ["campaign_id"], name: "index_signatures_on_campaign_id"
+  end
+
   create_table "tasks", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "campaign_id", null: false
@@ -187,6 +196,8 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_18_015514) do
   add_foreign_key "organizations", "users"
   add_foreign_key "promotions", "campaigns"
   add_foreign_key "promotions", "organizations"
+  add_foreign_key "signatures", "app_documents"
+  add_foreign_key "signatures", "campaigns"
   add_foreign_key "tasks", "campaigns"
   add_foreign_key "tasks", "users"
 end

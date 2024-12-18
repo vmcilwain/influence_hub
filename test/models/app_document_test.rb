@@ -10,5 +10,7 @@ class AppDocumentTest < ActiveSupport::TestCase
 
   context 'associations' do
     should belong_to(:user)
+    should have_many(:signatures).dependent(:destroy)
+    should have_many(:campaigns).through(:signatures).dependent(:destroy)
   end
 end
