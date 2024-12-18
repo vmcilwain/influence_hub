@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :organizations, dependent: :destroy
   has_many :contacts, through: :organizations
   has_many :expenses, dependent: :destroy
+  has_many :documents, class_name: 'AppDocument', dependent: :destroy
   
   validates :first_name, :last_name, presence: true
 end

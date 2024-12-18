@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   resources :organizations do
     resources :contacts
   end
+
+  resources :documents
   
   if Rails.env.development?
     get 'prototypes' => 'prototypes#index'

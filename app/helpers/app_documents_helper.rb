@@ -1,0 +1,2 @@
+module AppDocumentsHelper
+end
