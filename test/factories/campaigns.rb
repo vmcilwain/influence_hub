@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :campaign do
     user
-    name { Faker::Business.name }
+    name { Faker::Company.name }
     status { :draft }
     rate { 1.5 } # TODO: think if this should default to 0 in the DB
   end
