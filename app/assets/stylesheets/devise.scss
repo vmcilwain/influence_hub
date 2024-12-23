@@ -1,13 +1,24 @@
-#new_user {
+.new_user {
   margin: auto;
-  margin-top: 20lvh;
+  margin-top: 20vh;
   width: 50%;
-  height:500px;
-  border: 1px solid black;
+  height: 500px;
+  border: 1px solid $tertiary;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 10px;
-
 }
+// #new_user {
+//   margin: auto;
+//   margin-top: 20lvh;
+//   width: 50%;
+//   height:500px;
+//   border: 1px solid black;
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-items: center;
+//   gap: 10px;
+// }

@@ -1,3 +1,43 @@
+fieldset {
+  border: none;
+}
+
+.actions {
+  display: flex;
+  gap: var(--spacing-sm);
+  justify-content: flex-end;
+  .primary {
+    padding: 0.5em 1em;
+    background: linear-gradient(to right, #{$tertiary} 50%, var(--primary-color) 50%);
+    background-size: 200% 100%;
+    background-position: right bottom;
+    color: var(--background-color);
+    transition: all var(--transition-speed) var(--transition-timing);
+    cursor: pointer;
+    border: none;
+    border-radius: var(--border-radius);
+
+    &:hover {
+      background-position: left bottom;
+    }
+  }
+  .secondary {
+    padding: 0.5em 1em;
+    background: linear-gradient(to right, var(--primary-color) 50%, #{$tertiary} 50%);
+    background-size: 200% 100%;
+    background-position: right bottom;
+    color: var(--background-color);
+    transition: all var(--transition-speed) var(--transition-timing);
+    cursor: pointer;
+    border: none;
+    border-radius: var(--border-radius);
+
+    &:hover {
+      background-position: left bottom;
+    }
+  }
+}
+
 /* Form Styles */
 .form-group {
   margin-bottom: var(--spacing-md);
