@@ -1,8 +1,8 @@
 class Signature < ApplicationRecord
   belongs_to :document, class_name: 'AppDocument', foreign_key: 'app_document_id'
-  belongs_to :campaign
+  belongs_to :campaign # TODO: double check if campaign is necessary 
 
-  validates :signee_email, presence: true
+  validates :signee_email, :signature, presence: true
 
   before_validation :generate_external_id, on: :create
   before_validation :generate_security_code, on: :create
@@ -11,6 +11,13 @@ class Signature < ApplicationRecord
     pending: 0,
     signed: 1
   }
+
+  def signature_verified(signed_signature_params)
+    return false if signed_signature_params[:signee_signature] != signature
+    return false if signed_signature_params[:security_code] != security_code
+
+    update signee_signature: signed_signature_params[:signee_signature], status: :signed, signed_at: Time.zone.now
+  end
 
   private
   

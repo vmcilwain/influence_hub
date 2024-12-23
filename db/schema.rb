@@ -152,7 +152,10 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_18_203328) do
     t.string "security_code", default: "", null: false
     t.string "external_id", default: "", null: false
     t.string "signee_email", default: "", null: false
+    t.string "signature"
+    t.string "signee_signature"
     t.integer "status", default: 0, null: false
+    t.datetime "signed_at"
     t.index ["app_document_id"], name: "index_signatures_on_app_document_id"
     t.index ["campaign_id"], name: "index_signatures_on_campaign_id"
     t.index ["external_id"], name: "index_signatures_on_external_id", unique: true

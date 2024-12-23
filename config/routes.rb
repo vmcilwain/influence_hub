@@ -14,7 +14,12 @@ Rails.application.routes.draw do
     resources :contacts
   end
 
-  resources :documents
+  resources :documents do
+    resources :signatures
+  end
+
+  get 'signatures/:external_id/review' => 'signatures#review', as: :review_signature
+  put 'signatures/:external_id/sign' => 'signatures#sign', as: :sign_signature
   
   if Rails.env.development?
     get 'prototypes' => 'prototypes#index'
