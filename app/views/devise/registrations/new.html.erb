@@ -3,24 +3,24 @@
   
   <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
+  <fielset>
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+  </fielset>
 
-  <div class="field">
+  <fieldset class="field">
     <%= f.label :password %><br />
     <%= f.password_field :password, autocomplete: "new-password", placeholder: "#{@minimum_password_length} characters minimum" %>
-  </div>
+  </fieldset>
 
-  <div class="field">
+  <fieldset class="field">
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+  </fieldset>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
+  <fieldset class="actions">
+    <%= f.submit "Sign up", class: :primary %>
+  </fieldset>
   
   <%= render "devise/shared/links" %>
 <% end %>
