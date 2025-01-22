@@ -8,14 +8,16 @@
 @import "trix/dist/trix.css";
 
 // Features
+@import "devise";
+@import "organizations";
 @import "campaigns";
 @import "kanban";
-@import "devise";
+
 // Components
+@import "navigation";
 @import "buttons";
 @import "forms";
 @import "tables";
 @import "modals";
-@import "navigation";
 @import "flash";
 @import "actiontext";
