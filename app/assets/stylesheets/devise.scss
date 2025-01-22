@@ -1,8 +1,11 @@
-.new_user {
+@import "variables";
+
+.new_user,
+.edit_user {
   margin: auto;
-  margin-top: 20vh;
+  margin-top: 10vh;
   width: 50%;
-  height: 500px;
+  height: 600px;
   border: 1px solid $tertiary;
   display: flex;
   flex-direction: column;
