@@ -1,0 +1,48 @@
+<%= form_with model: @organization, data: { turbo: false } do |f| %>
+  <fieldset class="form-group">
+    <div class="form-row">
+      <%= f.label :status, "Enabled", class: "form-label required" %>
+      <%= f.checkbox :status, class: "form-input" %>
+    </div>
+
+    <div class="form-row">
+      <%= f.label :name, class: "form-label" %>
+      <%= f.text_field :name, class: "form-input" %>
+    </div>
+    
+    <div class="form-row">
+      <%= f.label :phone, "Phone Number", class: "form-label" %>
+      <%= f.phone_field :phone, class: "form-input" %>
+    </div>
+    
+    <div class="form-row">
+      <%= f.label :address, class: "form-label" %>
+      <%= f.text_field :address, class: "form-input" %>
+    </div>
+
+    <div class="form-row">
+      <%= f.label :address2, class: "form-label" %>
+      <%= f.text_field :address2, class: "form-input" %>
+    </div>
+
+    <div class="form-row">
+      <%= f.label :city, class: "form-label" %>
+      <%= f.text_field :city, class: "form-input" %>
+    </div>
+
+    <div class="form-row">
+      <%= f.label :state, class: "form-label" %>
+      <%= f.text_field :state, class: "form-input" %>
+    </div>
+
+    <div class="form-row">
+      <%= f.label :zipcode, "Zip Code", class: "form-label" %>
+      <%= f.text_field :zipcode, class: "form-input" %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit class: :primary %>
+      <%= cancel_link(@organization) %>
+    </div>
+  </fieldset>
+<% end %>

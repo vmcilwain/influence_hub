@@ -1,0 +1,22 @@
+<% content_for :title, "Organizations" %>
+
+<header class="page-header">
+  <h1>Organizations</h1>
+</header>
+
+<main class="table-responsive">
+  <table class="table" id="organizations">
+    <thead>
+      <tr>
+        <th id="name-header" scope="col">Name</th>
+        <th id="location-header"  scope="col">City, State</th>
+        <th  id="aaction-header" scope="col" class="actions">
+          <%= link_to 'New Organization', new_organization_path, class: 'primary' %>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render @organizations %>
+    </tbody>
+  </table>
+</main>

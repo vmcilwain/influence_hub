@@ -1,0 +1,12 @@
+<tr id="<%= dom_id organization %>">
+  <td headers="name-header">
+    <%= link_to organization.name, organization, aria: { label: "View details for #{organization.name}" } %>
+  </td>
+  <td headers="location-header">
+    <%= organization.city %>, <%= organization.state %>
+  </td>
+  <td class="actions" headers="action-header">
+    <%= link_to 'Edit', edit_organization_path(organization), class: 'primary', aria: { label: "Edit #{organization.name}" } %>
+    <%= button_to 'Delete', organization, method: :delete, class: 'secondary', data: { turbo_confirm: t("form.confirmation") }, aria: { label: "Delete #{organization.name}" } %>
+  </td>
+</tr>
