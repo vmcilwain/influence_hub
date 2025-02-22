@@ -1,0 +1,11 @@
+<% content_for :title, "New Contact for #{@organization.name}" %>
+
+<div class="page-container">
+  <header class="page-header">
+    <h1>New Contact for <%= @organization.name %></h1>
+  </header>
+
+  <main class="form-container">
+    <%= render 'form' %>
+  </main>
+</div>
