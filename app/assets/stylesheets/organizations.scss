@@ -1,1 +1,38 @@
 @import "variables";
+
+.organization-status {
+  .badge {
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-weight: 600;
+    &.badge-enabled {
+      background-color: #e6f4ea;
+      color: #1e7e34;
+    }
+    
+    &.badge-disabled {
+      background-color: #feeced;
+      color: #dc3545;
+    }
+  }
+}
+
+.organization-details {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 8rem;
+  margin-bottom: 2rem;
+  .organization-contact {
+    .address-line {
+      margin-bottom: 0.5rem;
+    }
+  }
+  .organization-metadata {
+    .metadata-item {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      margin-bottom: 1rem;
+    }
+  }
+}
