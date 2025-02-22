@@ -2,7 +2,7 @@
   <fieldset class="form-group">
     <div class="form-row">
       <%= f.label :status, "Enabled", class: "form-label required" %>
-      <%= f.checkbox :status, class: "form-input" %>
+      <%= f.select :status, { Active: "active", Inactive: "inactive"}, {}, class: 'form-input' %>
     </div>
 
     <div class="form-row">

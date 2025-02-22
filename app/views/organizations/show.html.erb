@@ -6,7 +6,7 @@
     
     <div class="organization-status">
       <span class="badge <%= @organization.active? ? 'badge-enabled' : 'badge-disabled' %>">
-        <%= @organization.active? ? 'Enabled' : 'Disabled' %>
+        <%= @organization.active? ? 'Active' : 'Inactive' %>
       </span>
     </div>
   </header>
@@ -17,10 +17,10 @@
       <address>
         <div class="address-line"><%= @organization.address %></div>
         <% if @organization.address2.present? %>
-          <div class="address-line"><%= @organization.address_2 %></div>
+          <div class="address-line"><%= @organization.address2 %></div>
         <% end %>
         <div class="address-line">
-          <%= @organization.city %>, <%= @organization.state %> <%= @organization.zipcode %>
+          <%= @organization.city %> <%= ", #{@organization.state}" if @organization.state.present? %> <%= @organization.zipcode %>
         </div>
         <div class="phone">
           <a href="tel:<%= @organization.phone %>">
