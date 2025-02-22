@@ -48,10 +48,21 @@
       </dl>
     </div>
   </section>
-
+  
   <div class="actions">
     <%= link_to :Listing, organizations_path, class: :primary %>
     <%= link_to :Edit, edit_organization_path(@organization), class: :primary %>
     <%= button_to :Delete, @organization, class: :secondary, data: { turbo_confirm: t('form.confirmation') }, method: :delete %>
   </div>
+
+  <section class="contacts-list">
+    <header class="page-header">
+      <h2>Contacts</h2>
+      <span class="actions">
+        <%= link_to "Add Contact", new_organization_contact_path(@organization), class: :primary %>
+      </span>
+    </header>
+
+    
+  </section>
 </main>
