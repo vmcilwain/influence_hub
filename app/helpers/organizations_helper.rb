@@ -1,5 +1,5 @@
 module OrganizationsHelper
-  def cancel_link(organization)
+  def cancel_organization_link(organization)
     link_to :Cancel,
             (organization.new_record? ? organizations_path : organization),
             class: :secondary
