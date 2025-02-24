@@ -10,9 +10,9 @@
       </p>
       <nav class="nav-links">
         <ul class="links">
-          <li><%= link_to :Organization, @organization, class: 'link-item' %></li>
-          <li><%= link_to :Edit, edit_organization_contact_path(@organization, @contact), class: 'link-item' %></li>
-          <li><%= button_to :Delete, organization_contact_path(@organization, @contact), method: :delete, data: { turbo_confirm: t("form.confirmation") }, class: 'link-item' %></li>
+          <li class="nav-item"><%= link_to :Organization, @organization %></li>
+          <li class="nav-item"><%= link_to :Edit, edit_organization_contact_path(@organization, @contact) %></li>
+          <li class="nav-item"><%= button_to :Delete, organization_contact_path(@organization, @contact), method: :delete, data: { turbo_confirm: t("form.confirmation") }, class: :link %></li>
         </ul>
       </nav>
     </div>

@@ -1,22 +1,25 @@
 <main class="campaign-show" role="main" aria-labelledby="campaign-title">
-  <header class="campaign-header">
-    <div class="campaign-title-wrapper">
-      <h1 id="campaign-title" class="campaign-title"><%= @campaign.name %></h1>
-      <div class="campaign-nav" role="navigation" aria-label="Campaign navigation">
-        <%= link_to campaigns_path, class: "button button-secondary", "aria-label" => "Back to campaigns list" do %>
-          <span aria-hidden="true">&larr;</span> All Campaigns
-        <% end %>
-        <%= link_to edit_campaign_path(@campaign), class: "button button-secondary", "aria-label" => "Edit campaign" do %>
-          <span aria-hidden="true">✎</span> Edit
-        <% end %>
-        <%= button_to @campaign, 
-            method: :delete, 
-            class: "button button-danger",
-            data: { turbo_confirm: t('form.confirmation') },
-            "aria-label" => "Delete campaign" do %>
-          <span aria-hidden="true">×</span> Delete
-        <% end %>
-      </div>
+  <header class="page-header">
+    <h1><%= @campaign.name %></h1>
+    <div class="subheader">
+      <p>Manage details and tasks for an organization</p>
+      <nav class="nav-links">
+        <ul class="links">
+          <li class="nav-item">
+            <%= link_to "All Campaigns", campaigns_path %>
+          </li>
+          <li class="nav-item">
+            <%= link_to :Edit, edit_campaign_path(@campaign)  %>
+          </li>
+          <li class="nav-item">
+            <%= button_to :Delete, @campaign, 
+              class: :link,
+              method: :delete, 
+              data: { turbo_confirm: t('form.confirmation') },
+              "aria-label" => "Delete campaign" %>    
+          </li>
+        </ul>
+      </nav>
     </div>
   </header>
 
