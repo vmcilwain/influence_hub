@@ -13,7 +13,7 @@
 
       <nav class="nav-links">
         <ul class="links">
-          <li class="nav-item"><%= link_to :Listing, organizations_path %></li>
+          <li class="nav-item"><%= link_to "All Organizations", organizations_path %></li>
           <li class="nav-item"><%= link_to :Edit, edit_organization_path(@organization) %></li>
           <li class="nav-item"><%= button_to :Delete, @organization, class: :link, data: { turbo_confirm: t('form.confirmation') }, method: :delete %></li>
         </ul>
