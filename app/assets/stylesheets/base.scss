@@ -66,14 +66,16 @@ main {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    flex-wrap: wrap;
     .muted-text {
       color: var(--secondary-color)
     }
     .nav-links > .links {
-      display:inline-flex;
+      display:flex;
       gap: 8px;
+      flex-wrap: wrap;
       list-style: none;
-      button.link-item {
+      button.link {
         appearance: none;
         background: none;
         border: none;
