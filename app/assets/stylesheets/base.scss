@@ -61,6 +61,33 @@ main {
     color: var(--text-color);
     margin: 0;
   }
+
+  .subheader {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    .muted-text {
+      color: var(--secondary-color)
+    }
+    .nav-links > .links {
+      display:inline-flex;
+      gap: 8px;
+      list-style: none;
+      button.link-item {
+        appearance: none;
+        background: none;
+        border: none;
+        color: var(--accent-color);
+        cursor: pointer;
+        font-size: inherit;
+        padding: 0;
+        text-decoration: none;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
 }
 
 /* Icon Styles */
