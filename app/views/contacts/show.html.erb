@@ -1,0 +1,56 @@
+<% content_for :title, contact_name(@contact) %>
+
+<main class="page-container">
+  <header class="page-header">
+    <h1><%= contact_name(@contact) %></h1>
+    
+    <div class="subheader">
+      <p class="muted-text">
+        <%= @contact.first_name %> is a contact for <%= @contact.organization.name %>
+      </p>
+      <nav class="nav-links">
+        <ul class="links">
+          <li><%= link_to :Organization, @organization, class: 'link-item' %></li>
+          <li><%= link_to :Edit, edit_organization_contact_path(@organization, @contact), class: 'link-item' %></li>
+          <li><%= button_to :Delete, organization_contact_path(@organization, @contact), method: :delete, data: { turbo_confirm: t("form.confirmation") }, class: 'link-item' %></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="organization-details">
+    <div class="organization-contact">
+      <h2>Contact Information</h2>
+      <address>
+        <div class="email">
+          <strong>Email:</strong>
+          <%= mail_to @contact.email, @contact.email %>
+        </div>
+        <div class="phone">
+          <strong>Phone:</strong>
+          <a href="tel:<%= @contact.phone %>">
+            <%= number_to_phone(@contact.phone, area_code: true) %>
+          </a>
+        </div>
+      </address>
+    </div>
+
+    <div class="organization-metadata">
+      <h2>Additional Information</h2>
+      <dl>
+        <div class="metadata-item">
+          <dt>Created</dt>
+          <dd><time datetime="<%= @contact.created_at.iso8601 %>">
+            <%= l(@contact.created_at, format: :long) %>
+          </time></dd>
+        </div>
+        <div class="metadata-item">
+          <dt>Last Updated</dt>
+          <dd><time datetime="<%= @contact.updated_at.iso8601 %>">
+            <%= l(@contact.updated_at, format: :long) %>
+          </time></dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+</main>

@@ -1,0 +1,11 @@
+<tr id="<%= dom_id contact %>">
+  <td headers="name-header">
+    <%= link_to contact_name(contact), organization_contact_path(contact.organization, contact) %>
+  </td>
+  <td headers="email-header">
+    <%= mail_to contact.email, contact.email %>
+  </td>
+  <td headers="phone-header">
+    <%= phone_to contact.phone, contact.phone %>
+  </td>
+</tr>

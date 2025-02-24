@@ -4,17 +4,29 @@
   <header class="page-header">
     <h1><%= @organization.name %></h1>
     
-    <div class="organization-status">
-      <span class="badge <%= @organization.active? ? 'badge-enabled' : 'badge-disabled' %>">
-        <%= @organization.active? ? 'Active' : 'Inactive' %>
-      </span>
+    <div class="subheader">
+      <div class="organization-status">
+        <span class="badge <%= @organization.active? ? 'badge-enabled' : 'badge-disabled' %>">
+          <%= @organization.active? ? 'Active' : 'Inactive' %>
+        </span>
+      </div>
+
+      <nav class="nav-links">
+        <ul class="links">
+          <li><%= link_to :Listing, organizations_path, class: :primary, class: "link-item" %></li>
+          <li><%= link_to :Edit, edit_organization_path(@organization), class: "link-item" %></li>
+          <li><%= button_to :Delete, @organization, class: :secondary, data: { turbo_confirm: t('form.confirmation') }, method: :delete , class: "link-item" %></li>
+        </ul>
+      </nav>
     </div>
+    
   </header>
 
   <section class="organization-details">
     <div class="organization-contact">
       <h2>Contact Information</h2>
       <address>
+        <strong>Address:</strong>
         <div class="address-line"><%= @organization.address %></div>
         <% if @organization.address2.present? %>
           <div class="address-line"><%= @organization.address2 %></div>
@@ -23,6 +35,7 @@
           <%= @organization.city %> <%= ", #{@organization.state}" if @organization.state.present? %> <%= @organization.zipcode %>
         </div>
         <div class="phone">
+          <strong>Phone:</strong>
           <a href="tel:<%= @organization.phone %>">
             <%= number_to_phone(@organization.phone, area_code: true) %>
           </a>
@@ -48,21 +61,33 @@
       </dl>
     </div>
   </section>
-  
-  <div class="actions">
-    <%= link_to :Listing, organizations_path, class: :primary %>
-    <%= link_to :Edit, edit_organization_path(@organization), class: :primary %>
-    <%= button_to :Delete, @organization, class: :secondary, data: { turbo_confirm: t('form.confirmation') }, method: :delete %>
-  </div>
 
   <section class="contacts-list">
     <header class="page-header">
       <h2>Contacts</h2>
-      <span class="actions">
-        <%= link_to "Add Contact", new_organization_contact_path(@organization), class: :primary %>
-      </span>
+      <div class="subheader">
+        <p>Manage contacts.</p>
+        <span class="nav-links">
+          <ul class="links">
+            <%= link_to "Add Contact", new_organization_contact_path(@organization), class: "link-item" %>
+          </ul>
+        </span>
+      </div>
     </header>
 
-    
+    <div class="table-responsive">
+      <table class="table" id="contacts">
+        <thead>
+          <tr>
+            <th id="name-header" scope="col">Name</th>
+            <th id="email-header"  scope="col">Email</th>
+            <th id="phone-header"  scope="col">Phone</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= render @organization.contacts %>
+        </tbody>
+      </table>
+    </div>
   </section>
 </main>
