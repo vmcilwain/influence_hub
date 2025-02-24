@@ -2,6 +2,16 @@
 
 <header class="page-header">
   <h1>Organizations</h1>
+  <div class="subheader">
+    <p>Manage organizations.</p>
+    <nav class="nav-links">
+      <ul class="links">
+        <li class="nav-item">
+          <%= link_to 'New Organization', new_organization_path %>
+        </li>
+      </ul>
+    </nav>
+  </div>
 </header>
 
 <main class="table-responsive">
@@ -10,9 +20,8 @@
       <tr>
         <th id="name-header" scope="col">Name</th>
         <th id="location-header"  scope="col">City, State</th>
-        <th  id="aaction-header" scope="col" class="actions">
-          <%= link_to 'New Organization', new_organization_path, class: 'primary' %>
-        </th>
+        <th id="phone-header">Phone</th>
+        <th id="created-header">Created At</th>
       </tr>
     </thead>
     <tbody>

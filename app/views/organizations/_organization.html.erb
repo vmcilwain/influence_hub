@@ -5,8 +5,10 @@
   <td headers="location-header">
     <%= organization.city %>, <%= organization.state %>
   </td>
-  <td class="actions" headers="action-header">
-    <%= link_to 'Edit', edit_organization_path(organization), class: 'primary', aria: { label: "Edit #{organization.name}" } %>
-    <%= button_to 'Delete', organization, method: :delete, class: 'secondary', data: { turbo_confirm: t("form.confirmation") }, aria: { label: "Delete #{organization.name}" } %>
+  <td headers="phone-header">
+    <%= phone_to organization.phone, organization.phone %>
+  </td>
+  <td headers="created-header">
+    <%= organization.created_at.iso8601 %>
   </td>
 </tr>
