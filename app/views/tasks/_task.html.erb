@@ -4,6 +4,17 @@
      data-campaign-id="<%= task.campaign.id %>"
      draggable="true"
      role="article">
+  <div class="kanban-item-header">
+    <%= button_to campaign_task_path(task.campaign, task),
+        method: :delete,
+        class: "delete-task-button",
+        data: { turbo_confirm: "Are you sure you want to delete this task? This action cannot be undone." },
+        form_class: "delete-task-form",
+        "aria-label": "Delete task" do %>
+      <span aria-hidden="true">&times;</span>
+    <% end %>
+  </div>
+  
   <%= link_to edit_campaign_task_path(task.campaign, task), 
       class: "kanban-item-content",
       data: { 
