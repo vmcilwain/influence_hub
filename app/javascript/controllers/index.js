@@ -7,7 +7,9 @@ import { application } from "./application"
 import HelloController from "./hello_controller"
 import KanbanController from "./kanban_controller"
 import TurboModalController from "./turbo_modal_controller"
+import OrganizationSelectorController from "./organization_selector_controller"
 
 application.register("hello", HelloController)
 application.register("kanban", KanbanController)
 application.register("turbo-modal", TurboModalController)
+application.register("organization-selector", OrganizationSelectorController)

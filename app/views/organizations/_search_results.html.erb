@@ -1,0 +1,8 @@
+<% organizations.each do |org| %>
+  <div class="organization-result" 
+       data-action="click->organization-selector#select"
+       data-organization-id="<%= org.id %>"
+       data-organization-name="<%= org.name %>">
+    <%= org.name %>
+  </div>
+<% end %> 

@@ -31,6 +31,10 @@
     <h2 id="details-heading" class="section-title">Details</h2>
     <div class="details-grid">
       <div class="detail-item">
+        <span class="detail-label">Organizations</span>
+        <span class="detail-value"><%= @campaign.organizations.map(&:name).join(", ") %></span>
+      </div>
+      <div class="detail-item">
         <span class="detail-label">Rate</span>
         <span class="detail-value"><%= number_to_currency(@campaign.rate) %></span>
       </div>

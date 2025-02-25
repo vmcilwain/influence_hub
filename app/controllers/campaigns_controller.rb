@@ -64,6 +64,14 @@ class CampaignsController < ApplicationController
     end
   end
 
+  # Add this new action for organization search
+  def search_organizations
+    @organizations = current_user.organizations.where('name LIKE ?', "%#{params[:query]}%")
+    render partial: 'organizations/search_results',
+           locals: { organizations: @organizations },
+           formats: [:html]
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
@@ -73,8 +81,7 @@ class CampaignsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def campaign_params
-    params.expect(campaign: %i[user_id name description status rate engagement_rate reach clicks]).tap do |campaign|
-      campaign[:user] = current_user
-    end
+    params.require(:campaign).permit(:name, :description, :status, :rate, 
+                                     :engagement_rate, :reach, :clicks, organization_ids: [])
   end
 end
