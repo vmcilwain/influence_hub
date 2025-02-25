@@ -62,6 +62,35 @@
     </div>
   </section>
 
+   <section class="campaigns-list">
+    <header class="page-header">
+      <h2>Campaigns</h2>
+      <div class="subheader">
+        <p>Manage campaigns.</p>
+        <span class="nav-links">
+          <ul class="links">
+            <li class="nav-item">
+              <%= link_to "Add Campaign", new_campaign_path %>
+            </li>
+          </ul>
+        </span>
+      </div>
+    </header>
+
+    <div class="table-responsive">
+      <table class="table" id="contacts">
+        <thead>
+          <tr>
+            <th id="name-header" scope="col">Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= render @organization.campaigns %>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
   <section class="contacts-list">
     <header class="page-header">
       <h2>Contacts</h2>
@@ -69,7 +98,9 @@
         <p>Manage contacts.</p>
         <span class="nav-links">
           <ul class="links">
-            <%= link_to "Add Contact", new_organization_contact_path(@organization), class: "link-item" %>
+            <li class=="nav-item">
+              <%= link_to "Add Contact", new_organization_contact_path(@organization) %>
+            </li>
           </ul>
         </span>
       </div>
