@@ -89,9 +89,14 @@
       <% end %>
     </div>
 
-    <div class="form-actions">
+    <div class="modal-footer">
       <%= f.submit class: "btn btn-primary", data: { disable_with: "Saving..." } %>
-      <%= link_to "Cancel", campaign_path(campaign), class: "btn btn-secondary" %>
+      <%= link_to "Cancel", "#", 
+          class: "btn btn-secondary", 
+          data: { 
+            action: "click->turbo-modal#hideModal",
+            turbo: false 
+          } %>
     </div>
   <% end %>
 </div>

@@ -1,27 +1,51 @@
-<%# Update the tasks list with the new task %>
-<%= turbo_stream.append "tasks" do %>
-  <%= render @task %>
-<% end %>
+<%# Remove this as it's not needed anymore %>
+<%# turbo_stream.append "tasks" do %>
+  <%# render @task %>
+<%# end %>
 
-<%# Keep the modal open and show success message %>
-<%= turbo_stream.update "task-edit-modal" do %>
-  <dialog data-controller="turbo-modal" class="modal">
-    <div class="turbo-frame-overlay"></div>
-    
-    <%= link_to "×", "#", 
-          class: "modal-close", 
-          data: { action: "click->turbo-modal#hideModal" } %>
-    
-    <header class="header-container">
-      <h1 class="header">Edit Task for <%= @campaign.name %></h1>
-    </header>
+<% if @task.persisted? %>
+  <%# Add/update the task in the correct status column %>
+  <%= turbo_stream.append "items_#{@task.status}", partial: "tasks/task", locals: { task: @task, campaign: @campaign } %>
+  
+  <%# Update the modal with success message but keep it open %>
+  <%= turbo_stream.update "task-edit-modal" do %>
+    <dialog data-controller="turbo-modal" class="modal">
+      <div class="turbo-frame-overlay"></div>
+      
+      <%= link_to "×", "#", 
+            class: "modal-close", 
+            data: { action: "click->turbo-modal#hideModal" } %>
+      
+      <header class="header-container">
+        <h1 class="header">Edit Task for <%= @campaign.name %></h1>
+      </header>
 
-    <div class="flash flash-success" role="alert">
-      Task was successfully created.
-    </div>
+      <div class="flash flash-success" role="alert">
+        Task was successfully <%= @task.previous_changes.empty? ? 'updated' : 'created' %>.
+      </div>
 
-    <%= turbo_frame_tag "#{dom_id(@task)}_form" do %>
-      <%= render "form", campaign: @campaign, task: @task %>
-    <% end %>
-  </dialog>
+      <%= turbo_frame_tag "#{dom_id(@task)}_form" do %>
+        <%= render "form", campaign: @campaign, task: @task %>
+      <% end %>
+    </dialog>
+  <% end %>
+<% else %>
+  <%# If there are validation errors, re-render the form %>
+  <%= turbo_stream.update "task-edit-modal" do %>
+    <dialog data-controller="turbo-modal" class="modal">
+      <div class="turbo-frame-overlay"></div>
+      
+      <%= link_to "×", "#", 
+            class: "modal-close", 
+            data: { action: "click->turbo-modal#hideModal" } %>
+      
+      <header class="header-container">
+        <h1 class="header">New Task for <%= @campaign.name %></h1>
+      </header>
+
+      <%= turbo_frame_tag "#{dom_id(@task)}_form" do %>
+        <%= render "form", campaign: @campaign, task: @task %>
+      <% end %>
+    </dialog>
+  <% end %>
 <% end %>
