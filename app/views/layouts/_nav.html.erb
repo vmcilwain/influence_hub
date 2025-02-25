@@ -15,7 +15,7 @@
       <ul id="nav-links" class="nav-links">
         <li><%= link_to "Home", root_path, class: current_page?(root_path) ? "active" : "" %></li>
         <% if user_signed_in? %>
-          <li><%#= link_to :Campaigns, campaigns_path, class: current_page?(campaigns_path) ? "active" : "" %></li>
+          <li><%= link_to :Campaigns, campaigns_path, class: current_page?(campaigns_path) ? "active" : "" %></li>
           <li><%= link_to :Organizations, organizations_path, class: current_page?(organizations_path) ? "active" : "" %></li>
           <li><%= link_to "Account", edit_user_registration_path, class: current_page?(edit_user_registration_path) ? "active" : "" %></li>
           <li><%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "button", form_class: "inline-form" %></li>
