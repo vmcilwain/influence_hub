@@ -123,6 +123,7 @@ GEM
     faker (3.5.1)
       i18n (>= 1.8.11, < 2)
     ffi (1.17.0-arm64-darwin)
+    ffi (1.17.0-x86_64-linux-gnu)
     friendly_id (5.5.1)
       activerecord (>= 4.0.0)
     globalid (1.2.1)
@@ -169,6 +170,8 @@ GEM
       net-protocol
     nio4r (2.7.4)
     nokogiri (1.16.7-arm64-darwin)
+      racc (~> 1.4)
+    nokogiri (1.16.7-x86_64-linux)
       racc (~> 1.4)
     orm_adapter (0.5.0)
     parallel (1.26.3)
@@ -309,7 +312,7 @@ GEM
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.6.0)
-    uri (1.0.2)
+    uri (1.0.3)
     useragent (0.16.10)
     warden (1.2.9)
       rack (>= 2.0.9)
@@ -329,6 +332,7 @@ GEM
 
 PLATFORMS
   arm64-darwin
+  x86_64-linux
 
 DEPENDENCIES
   active_storage_validations
